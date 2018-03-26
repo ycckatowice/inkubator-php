@@ -1,1 +1,2 @@
-Repozytorium przygotowane dla zajęć z programowania php
+Repozytorium przygotowane dla zajęć z programowania php.
+
