@@ -3,9 +3,10 @@
 include_once 'partial/header.php';
 
 if(isset($_GET['order_id'])){
-    $orderId = $_GET['order_id'];
+    $orderid= $_GET['order_id'];
+    
 }else{
-     $orderId = '';
+    $orderid = '';
 }
 ?>
 
