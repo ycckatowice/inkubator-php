@@ -29,7 +29,7 @@ if(isset($_GET['opcje'])){
     $wielkoscTablicy = sizeof($opcje);
     $wyborKomputera = $opcje[rand(0, $wielkoscTablicy - 1)];
     echo "Komputer wybrał:" . $wyborKomputera;
-    echo "<br>Użytkownik wybrał: ". $_GET['opcje'];
+    echo "<br>To jest opcja wybrana przez użytkownika: ". $_GET['opcje'];
     
     
     if($_GET['opcje'] == $wyborKomputera){
