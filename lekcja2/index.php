@@ -100,12 +100,14 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <?php 
+            var_dump($dane);
+            exit;
             for($i = 0; $i < count($dane); $i++){
                 echo '<div class="col-lg-4">
-                        <img class="rounded-circle" src="img/capriciossa.png" alt="Generic placeholder image" width="140" height="140">
+                        <img class="rounded-circle" src="'.$dane[$i]['img'].'" alt="Generic placeholder image" width="140" height="140">
                         <h2>'.$dane[$i]["nazwa"] .'</h2>
                         <p>'. $dane[$i]["opis"] .'</p>
-                        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                        <p><a class="btn btn-secondary" href="order.php?order_id='.$dane[$i]['id'].'" role="button">View details &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->';
             }
             

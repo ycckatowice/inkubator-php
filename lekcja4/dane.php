@@ -6,9 +6,25 @@
  * and open the template in the editor.
  */
 $dane = [
-    ["nazwa" => "capricciossa", "opis" => "ciasto, ser, kabanos"],
-    ["nazwa" => "margarita", "opis" => "ciasto, ser, kabanos, cebula"],
-    ["nazwa" => "hawai", "opis" => "ciasto, kabanos, cebula"],
-    ["nazwa" => "mafioso", "opis" => "ciasto, kabanos, cebula"],
+    [   "id" => 1,
+        "nazwa" => "capricciossa",
+        "opis" => "ciasto, ser, kabanos",
+        "img" => "img/capriciossa.png",
+    ],
+    [   "id" => 2,
+        "nazwa" => "margarita",
+        "opis" => "ciasto, ser, kabanos, cebula",
+        "img" => "img/mafioso.png",
+    ],
+    [   "id" => 13,
+        "nazwa" => "hawai",
+        "opis" => "ciasto, kabanos, cebula",
+        "img" => "img/roma.png",
+    ],
+    [   "id" => 4,
+        "nazwa" => "mafioso",
+        "opis" => "ciasto, kabanos, cebula",
+        "img" => "img/roma.png",
+    ],
 ];
 
