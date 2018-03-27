@@ -2,12 +2,38 @@
 
 include_once 'partial/header.php';
 
-if(isset($_GET['order_id'])){
-    $orderid= $_GET['order_id'];
+
+
+function requestGetVariable(string $name, string $default = ''): string
+{
+    if(isset($_GET[$name])){
+        $variable = $_GET[$name];
+    }else{
+        $variable = $default;
+    }
     
-}else{
-    $orderid = '';
+    return $variable;
 }
+
+$orderId = requestGetVariable("order_id");
+
+
+file_put_contents("lokalna_baza.txt",  json_encode($dane));
+
+$bazaLokalna = json_decode(file_get_contents("lokalna_baza.txt"), true);
+$bazaLokalna[] = [
+    "id" => 1, 
+    "name" => "fsdfsd",
+    
+];
+var_dump($bazaLokalna);
+
+if(isset($_GET['wstecz'])){
+    header('Location: index.php');
+}
+
+
+
 ?>
 
 
@@ -17,3 +43,6 @@ if(isset($_GET['order_id'])){
 <?php
     include_once 'partial/footer.php';
 ?>
+
+<?php
+
