@@ -35,16 +35,28 @@ require 'Gallery.php';
             margin:1% 1% 0.5% 0.5%;
             border-radius:10px;
         }
-      .header img
-      {
-          width:1346px;
-      }
+     .jumbotron
+     {
+         background-color:#343a40;
+         margin: 0 0 0 0;
+        
+     }
+     
+     .img-fluid
+     {
+         width:1080px;
+         height:720px;
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+     }
+      
     </style>
     
     <body>
         
        
-            <div class="header">
+            <div class="jumbotron">
                 <?php 
                 if(isset($_GET['id'])) 
                 {
