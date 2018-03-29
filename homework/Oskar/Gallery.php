@@ -1,78 +1,75 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
 
-$gallery = [ 
-    [   "id" => 0,
-        
+$gallery = [
+    ["id" => 0,
+        "likeId" => 0,
         "img" => "img/breakingbad.jpg",
     ],
-    [   "id" => 1,
-        
+    ["id" => 1,
+        "likeId" => 0,
         "img" => "img/fringe.jpg",
     ],
-    [
-        "id" => 2,
+    ["id" => 2,
+        "likeId" => 0,
         "img" => "img/got.jpg",
     ],
-    [   "id" => 3,
-        
+    ["id" => 3,
+        "likeId" => 0,
         "img" => "img/wikingowie.jpg",
     ],
-    [   "id" => 4,
-        
+    ["id" => 4,
+        "likeId" => 0,
         "img" => "img/fringe.jpg",
     ],
-    [   "id" => 5,
-      
+    ["id" => 5,
+        "likeId" => 0,
         "img" => "img/breakingbad.jpg",
     ],
-    [   "id" => 6,
-        
+    ["id" => 6,
+        "likeId" => 0,
         "img" => "img/fringe.jpg",
     ],
-    [   "id" => 7,
-        
+    ["id" => 7,
+        "likeId" => 0,
         "img" => "img/wikingowie.jpg",
     ],
-    [   "id" => 8,
-        
+    ["id" => 8,
+        "likeId" => 0,
         "img" => "img/got.jpg",
     ],
-    [   "id" => 9,
-        
+    ["id" => 9,
+        "likeId" => 0,
         "img" => "img/breakingbad.jpg",
     ],
-    [   "id" => 10,
-        
+    ["id" => 10,
+        "likeId" => 0,
         "img" => "img/fringe.jpg",
     ],
-    [   "id" => 11,
-     
+    ["id" => 11,
+        "likeId" => $varLike = 0,
         "img" => "img/got.jpg",
     ],
-    [   "id" => 12,
-        
+    ["id" => 12,
+        "likeId" => 0,
         "img" => "img/wikingowie.jpg",
     ],
-    [   "id" => 13,
-       
+    ["id" => 13,
+        "likeId" => 0,
         "img" => "img/breakingbad.jpg",
     ],
-    [   "id" => 14,
-        
+    ["id" => 14,
+        "likeId" => 0,
         "img" => "img/fringe.jpg",
     ],
-    [   "id" => 15,
-    
+    ["id" => 15,
+        "likeId" => 0,
         "img" => "img/got.jpg",
     ],
-   
-    
 ];
-
