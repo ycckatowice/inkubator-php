@@ -86,35 +86,32 @@ $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
 
 
         <div class="jumbotron">
-<?php
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+            <?php
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
 
-    for ($i = 0; $i <= count($gallery); $i++) {
+                for ($i = 0; $i <= count($gallery); $i++) {
 
-        if ($id == $i) {
+                    if ($id == $i) {
 
-            echo '<a href="ZadDom.php"><img src="' . $gallery[$id]['img'] . '" class="img-fluid" alt="Responsive image"/></a> '
-            . '<a class="btn btn-secondary" href="ZadDom.php?id=' . $id . '&likeId=' . $gallery[$id]['likeId'] . '&wstecz" role="button">Like</a>';
+                        echo '<a href="ZadDom.php"><img src="' . $gallery[$id]['img'] . '" class="img-fluid" alt="Responsive image"/></a> '
+                        . '<a class="btn btn-secondary" href="ZadDom.php?id=' . $id . '&likeId=' . $gallery[$id]['likeId'] . '&wstecz" role="button">Like</a>';
 
-            if (isset($_GET['likeId']) && isset($_GET['wstecz'])) 
-             {
-                //var_dump($baza_Lokalna);
-                $baza_Lokalna[$id]['likeId'] = $baza_Lokalna[$id]['likeId'] + 1;
-                file_put_contents("baza.txt", json_encode($baza_Lokalna));
-                header("Location: ZadDom.php?id=$id");
-                
+                        if (isset($_GET['likeId']) && isset($_GET['wstecz'])) {
+                            //var_dump($baza_Lokalna);
+                            $baza_Lokalna[$id]['likeId'] = $baza_Lokalna[$id]['likeId'] + 1;
+                            file_put_contents("baza.txt", json_encode($baza_Lokalna));
+                            header("Location: ZadDom.php?id=$id");
+                        }
+
+                        echo 'Likes: ' . $baza_Lokalna[$id]['likeId'];
+                    }
+                }
+            } else {
+
+                echo '<a href ="ZadDom.php"><img src="' . $gallery[rand(0, count($gallery) - 1)]['img'] . '" class="img-fluid"/></a> ';
             }
-           
-         echo 'Likes: '.$baza_Lokalna[$id]['likeId'];
-        }
-    }
-} else {
-    
-    echo '<a href ="ZadDom.php"><img src="' . $gallery[rand(0, count($gallery) - 1)]['img'] . '" class="img-fluid"/></a> ';
-            
-}
-?>  
+            ?>  
 
 
         </div>
