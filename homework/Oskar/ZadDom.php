@@ -17,11 +17,16 @@ if (file_exists("Gallery.php")) {
   }
   $id = requestGetVariable("id");
  * nie potrafie utworzyc dobrego "ifa" zeby mi dzialal razem z ta funkcja, wydaje mi sie ze tak jest latwiej.
+ 
+function wpisanieDoBazy(int $var, array $var2, string $nazwa) {
+    $baza_Lokalna[$var]['$nazwa'] = $baza_Lokalna[$var]['$nazwa'] + 1;
+    file_put_contents("baza.txt", json_encode($var2));
+    header("Location: ZadDom.php?id=$var");
+} czy ona cos powinna zwracac? bo tak srednio mi dziala, ale mozliwe ze cos zle wpisuje.
  */
+
 //file_put_contents("baza.txt", json_encode($gallery));
 $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
-//var_dump($baza_Lokalna);
-//$baza_Lokalna['likeId']=+1;
 ?>
 <html> 
 
@@ -56,8 +61,6 @@ $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
             .jumbotron .btn 
             {
                 position: absolute;
-                top: 10%;
-                left: 25%;
                 font-size: 20px;
                 padding: 12px 24px;
                 cursor: pointer;
@@ -79,6 +82,17 @@ $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
                 margin-left:auto;
                 margin-right:auto;
             }
+            .dislike
+            {
+                top: 10%;
+                right: 25%;
+            }
+
+            .like
+            {
+                top: 10%;
+                left: 25%;
+            }
 
         </style>
 
@@ -92,19 +106,33 @@ $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
 
                 for ($i = 0; $i <= count($gallery); $i++) {
 
+
+
                     if ($id == $i) {
 
                         echo '<a href="ZadDom.php"><img src="' . $gallery[$id]['img'] . '" class="img-fluid" alt="Responsive image"/></a> '
-                        . '<a class="btn btn-secondary" href="ZadDom.php?id=' . $id . '&likeId=' . $gallery[$id]['likeId'] . '&wstecz" role="button">Like</a>';
+                        . '<a class="btn btn-secondary like" href="ZadDom.php?id=' . $id . '&likeId=' . $gallery[$id]['likeId'] . ' &wstecz" role="button">Like</a>'
+                        . '<a class="btn btn-secondary dislike" href="ZadDom.php?id=' . $id . '&dislikeId=' . $gallery[$id]['dislikeId'] . '&wstecz" role="button">Dislike</a>';
 
                         if (isset($_GET['likeId']) && isset($_GET['wstecz'])) {
                             //var_dump($baza_Lokalna);
-                            $baza_Lokalna[$id]['likeId'] = $baza_Lokalna[$id]['likeId'] + 1;
+                            $baza_Lokalna[$id]['likeId'] += 1;
+                            file_put_contents("baza.txt", json_encode($baza_Lokalna));
+                            header("Location: ZadDom.php?id=$id");
+                        } elseif (isset($_GET['dislikeId']) && isset($_GET['wstecz'])) {
+                            $baza_Lokalna[$id]['dislikeId'] += 1;
                             file_put_contents("baza.txt", json_encode($baza_Lokalna));
                             header("Location: ZadDom.php?id=$id");
                         }
+                        if ($baza_Lokalna[$id]['likeId'] || $baza_Lokalna[$id]['dislikeId'] != 0) {
 
-                        echo 'Likes: ' . $baza_Lokalna[$id]['likeId'];
+                            echo '<h1>Likes: ' . $baza_Lokalna[$id]['likeId'];
+                            echo '<h1>Dislikes: ' . $baza_Lokalna[$id]['dislikeId'];
+                        } else {
+
+                            echo '<h1> Likes: 0 </h1>';
+                            echo '<h1> Dislikes: 0 </h1>';
+                        }
                     }
                 }
             } else {
