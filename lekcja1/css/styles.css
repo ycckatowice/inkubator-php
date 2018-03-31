@@ -1,0 +1,47 @@
+		body{
+			background-color: grey;
+			font-family: Calibri;
+			margin:0;
+		}
+		.container{
+			background-color: white;
+			width:80%;
+			margin: 0 auto;
+		}
+		.header{
+			position: relative;
+		    margin: 0 auto;
+		    height: 320px;
+		    overflow: hidden;
+		}
+		.header img{
+			width:100%;
+		}
+		.box_list{
+			width:90%;
+			margin: 20px 5% 0 5%;
+			position:relative;
+			overflow: auto;
+		}
+		.box{
+			width:32%;
+			margin-right:1%;
+			float:left;
+			height:auto;
+		}
+		.box img{
+			width:80%;
+			margin:0 10% 0 10%;
+		}
+		.box h4{
+			margin:0;
+			text-align: center;
+		}
+		.box p{
+		    margin: 5px;
+		}
+
+		.footer{
+			min-height: 100px;
+			overflow: auto;
+		}
