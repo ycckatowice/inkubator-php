@@ -57,6 +57,7 @@
                 ?>
             </div>           
             
+            
             <div id="dziecko3" class="container">
                 <b>Gracz: </b><br>
                 <?php  
