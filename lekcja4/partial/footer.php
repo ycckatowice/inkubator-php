@@ -17,3 +17,7 @@
     <script src="js/holder.min.js"></script>
   </body>
 </html>
+
+<?php
+    ob_flush();
+?>
