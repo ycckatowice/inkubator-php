@@ -4,6 +4,7 @@
  }else{
      exit("<h1>Przepraszamy, coś poszło nie tak :(");
  }
+ ob_start();
   
 ?>
 <!doctype html>
