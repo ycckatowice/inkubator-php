@@ -36,6 +36,7 @@
         img{
             border-radius: 7px;
         }
+
         
         </style>
     </head>
@@ -76,13 +77,15 @@
                 <b>Wynik: </b><br>
                 <?php               
                     
-                    if($_SESSION['komputer'][0]['moc'] > $_SESSION['gracz'][0]['moc']){
-                        echo "komputer wygrał";
-                    }elseif($_SESSION['komputer'][0]['moc'] == $_SESSION['gracz'][0]['moc'] ){
-                        echo "remis";
-                    }else{
-                        echo "Gracz wygrał";
-                    }               
+                $odpowiedz = [
+                    1 => "komputer wygea�",
+                    0 => "remis",
+                    -1 => "gracz wygra�"
+                ];
+                
+                echo $odpowiedz[$_SESSION['komputer'][0]['moc'] <=> $_SESSION['gracz'][0]['moc']];
+                 
+                   
                 ?>
                 <br>
                 <a href="index.php" class="btn btn-primary">Wróć</button></a>                  
