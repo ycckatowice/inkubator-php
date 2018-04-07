@@ -1,45 +1,17 @@
 <?php
+    //$_SESSION = array();
+    //session_destroy();
+    
     session_start();
+    $_SESSION['indexTablicy'] = 0;
     include_once 'partial/header.php';
-    require 'dane.php';
-    ob_start();
+
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <style>
-        #rodzic {
-            background-color:white;
-            border:3px dashed red;
-            font-size:1.4em;
-            height: 250px;
-        }
-
-        #dziecko1 {
-            float: left;
-            width:35%;
-            height: 100%;
-            background-color:lightblue;
-        }
-
-        #dziecko2 {
-            float: left;
-            width:30%;
-            height: 100%;
-            background-color:lightgreen;
-        }
-        #dziecko3{
-            float: left;
-            width:35%;
-            height: 100%;
-            background-color: #ff9e3e;      
-        }
-        img{
-            border-radius: 7px;
-        }
-        
-        </style>
+        <title>Gra karciana wojna</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         
@@ -80,7 +52,9 @@
             
             <div id="dziecko2" class="container">
                 <b>Wynik: </b><br>
-
+                <br>
+                <br>
+                <br>
                 <a href="sprawdzenie.php" class="btn btn-primary">Sprawdź!!!</button></a>
                   
             </div>          

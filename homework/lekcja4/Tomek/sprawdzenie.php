@@ -1,44 +1,21 @@
 <?php
     session_start();
     include_once 'partial/header.php';
+    
+    if(isset($_SESSION['indexTablicy'])){
+        $index = $_SESSION['indexTablicy'];
+    }else{
+        $index = 0;
+        $_SESSION['indexTablicy'] = $index;
+    }
+    
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <style>
-        #rodzic {
-            background-color:white;
-            border:3px dashed red;
-            font-size:1.4em;
-            height: 250px;
-        }
+        <title>Gra karciana wojna</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
-        #dziecko1 {
-            float: left;
-            width:35%;
-            height: 100%;
-            background-color:lightblue;
-        }
-
-        #dziecko2 {
-            float: left;
-            width:30%;
-            height: 100%;
-            background-color:lightgreen;
-        }
-        #dziecko3{
-            float: left;
-            width:35%;
-            height: 100%;
-            background-color: #ff9e3e;      
-        }
-        img{
-            border-radius: 7px;
-        }
-
-        
-        </style>
     </head>
     <body>
         
@@ -47,8 +24,8 @@
                 <b>Komputer: </b><br>
                 
                 <?php               
-               
-                    for($i=0; $i<1; $i++){
+                    //echo $_SESSION['indexTablicy'];
+                    for($i=$index; $i<$index +1; $i++){
                         echo '<img src="'.$_SESSION['komputer'][$i]['img'].'">';
                         print_r($_SESSION['komputer'][$i]['nazwa']);
                         echo " "; 
@@ -63,7 +40,7 @@
                 <b>Gracz: </b><br>
                 <?php  
 
-                    for($i=0; $i<1; $i++){
+                    for($i=$index; $i<$index +1; $i++){
                         echo '<img src="'.$_SESSION['gracz'][$i]['img'].'">';
                         print_r($_SESSION['gracz'][$i]['nazwa']);
                         echo " "; 
@@ -77,18 +54,58 @@
                 <b>Wynik: </b><br>
                 <?php               
                     
-                $odpowiedz = [
-                    1 => "komputer wygea�",
+                /*
+                    $odpowiedz = [
+                    1 => "komputer wygrał",
                     0 => "remis",
-                    -1 => "gracz wygra�"
-                ];
-                
+                    -1 => "gracz wygrał"
+                ];               
                 echo $odpowiedz[$_SESSION['komputer'][0]['moc'] <=> $_SESSION['gracz'][0]['moc']];
-                 
-                   
+                */
+                    
+                    if($_SESSION['komputer'][$index]['moc'] > $_SESSION['gracz'][$index]['moc']){
+                        echo "komputer wygrał";
+                        echo "<br />";   
+                        array_push($_SESSION['komputer'], $_SESSION['komputer'][$index], $_SESSION['gracz'][$index]);
+                        unset($_SESSION['komputer'][$index]);
+                        unset($_SESSION['gracz'][$index]);
+                        echo "liczba kart komputera: ";
+                        echo count($_SESSION['komputer']);
+                        echo "<br />";
+                        echo "liczba kart gracza: ";
+                        echo count($_SESSION['gracz']);
+                        
+                    }elseif($_SESSION['komputer'][$index]['moc'] == $_SESSION['gracz'][$index]['moc'] ){
+                        echo "<br />";
+                        echo "<br />";
+                        echo "remis";
+                        array_push($_SESSION['komputer'], $_SESSION['komputer'][$index]);
+                        array_push($_SESSION['gracz'], $_SESSION['gracz'][$index]);
+                        unset($_SESSION['komputer'][$index]);
+                        unset($_SESSION['gracz'][$index]);
+                        $_SESSION['indexTablicy'] = $index - 1;
+                    }else{
+                        echo "Gracz wygrał";
+                        echo "<br />";
+                        array_push($_SESSION['gracz'], $_SESSION['gracz'][$index], $_SESSION['komputer'][$index]);
+                        unset($_SESSION['komputer'][$index]);
+                        unset($_SESSION['gracz'][$index]);                        
+                        echo "liczba kart komputera: ";
+                        echo count($_SESSION['komputer']);
+                        echo "<br />";
+                        echo "liczba kart gracza: ";
+                        echo count($_SESSION['gracz']);
+                    }                
+                    $_SESSION['indexTablicy'] = $index;
+                    //var_dump($_SESSION['komputer']);
                 ?>
                 <br>
-                <a href="index.php" class="btn btn-primary">Wróć</button></a>                  
+                <a href="sprawdzenie2.php" class="btn btn-primary">Wróć</button></a>
+                <?php
+                echo "<br />";
+                echo "liczba stoczonych wojen: ";
+                echo $index +1;
+                ?>
             </div>          
         </div>
     </body>
