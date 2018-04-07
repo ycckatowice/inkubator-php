@@ -143,7 +143,16 @@ if($_SESSION["myPoints"] >= 100){
     echo "<br><h1>Gracz wygrywa wojnę</h1>";
     setBasePoints();
 }
-if($compDeckSize < 1){
+
+if(empty($_SESSION['compDeck'])){
+    $_SESSION['compDeck'] = array_merge($_SESSION['compDeck'], $_SESSION['compWonDeck']);
+}
+if(empty($_SESSION['userDeck'])){
+    $_SESSION['userDeck'] = array_merge($_SESSION['userDeck'], $_SESSION['userWonDeck']);
+}
+
+
+/*if($compDeckSize < 1){
     $_SESSION['compDeck'] = array_merge($_SESSION['compDeck'], $_SESSION['compWonDeck']);
 
     echo sizeof($_SESSION['compDeck']);
@@ -153,7 +162,7 @@ if($compDeckSize < 1){
 if($userDeckSize < 1){
     // array_push($_SESSION['userDeck'], $_SESSION['userWonDeck']);
     echo "user";
-}
+}*/
 
 
 ?>
