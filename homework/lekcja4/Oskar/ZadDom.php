@@ -1,30 +1,33 @@
 <?php
+ob_start();
 if (file_exists("Gallery.php")) {
     require 'Gallery.php';
 } else {
     exit("<h1>something wrong</h1>");
 }
 
-/* function requestGetVariable(string $name, string $default = ''): string
-  {
-  if(isset($_GET[$name])){
-  $lol = $_GET[$name];
-  }else{
-  $lol = $default;
-  }
+function requestGetVariable(string $name, string $default = ''): string {
+    if (isset($_GET[$name])) {
+        $lol = $_GET[$name];
+    } else {
+        $lol = $default;
+    }
 
-  return $lol;
-  }
-  $id = requestGetVariable("id");
- * nie potrafie utworzyc dobrego "ifa" zeby mi dzialal razem z ta funkcja, wydaje mi sie ze tak jest latwiej.
- 
-function wpisanieDoBazy(int $var, array $var2, string $nazwa) {
+    return $lol;
+}
+
+$id = requestGetVariable("id");
+/* nie potrafie utworzyc dobrego "ifa" zeby mi dzialal razem z ta funkcja, wydaje mi sie ze tak jest latwiej.
+ */
+
+function wpisanieDoBazy(int $var, array $var2, string $nazwa, array $baza_Lokalna) {
+
     $baza_Lokalna[$var]['$nazwa'] = $baza_Lokalna[$var]['$nazwa'] + 1;
     file_put_contents("baza.txt", json_encode($var2));
     header("Location: ZadDom.php?id=$var");
-} czy ona cos powinna zwracac? bo tak srednio mi dziala, ale mozliwe ze cos zle wpisuje.
- */
+}
 
+//czy ona cos powinna zwracac? bo tak srednio mi dziala, ale mozliwe ze cos zle wpisuje.
 //file_put_contents("baza.txt", json_encode($gallery));
 $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
 ?>
@@ -148,11 +151,11 @@ $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
             <div class="kolumna">
 
                 <div class="box">
-<?php
-for ($i = 0; $i < count($gallery); $i++) {
-    echo '<a href ="ZadDom.php?id=' . $gallery[$i]['id'] . '"><img src="' . $gallery[$i]['img'] . '" class="card-img-top  "/></a> ';
-}
-?>
+                    <?php
+                    for ($i = 0; $i < count($gallery); $i++) {
+                        echo '<a href ="ZadDom.php?id=' . $gallery[$i]['id'] . '"><img src="' . $gallery[$i]['img'] . '" class="card-img-top  "/></a> ';
+                    }
+                    ?>
 
                 </div>
             </div>
@@ -167,3 +170,6 @@ for ($i = 0; $i < count($gallery); $i++) {
 
 
 </html>
+
+<?php
+ob_flush();
