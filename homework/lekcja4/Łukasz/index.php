@@ -4,19 +4,11 @@ session_start();
 
 define("BASE_POINTS", 0);
 
+require_once "data.php";
+
+
 if(!isset($_SESSION["myPoints"]) || !isset($_SESSION["compPoints"])) {
     setBasePoints();
-}
-
-if (!isset($compDeck) || !isset($userDeck)){ //ZBĘDNE
-    require_once "data.php";
-    $deck = json_encode($data);
-
-    file_put_contents("deck.txt", $deck);
-
-    $update = file_get_contents("deck.txt");
-    $compDeck = json_decode($update, true);
-    $userDeck = json_decode($update, true);
 }
 
 if(empty($_SESSION['compDeck']) || empty($_SESSION['userDeck'])){
@@ -34,7 +26,6 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
 
     if(!isset($compDeckSize)) {
         $compDeckSize = sizeof($_SESSION['compDeck']) -1;
-
     }
 
     $compIndex = rand(0, $compDeckSize);
@@ -68,7 +59,8 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         array_push($_SESSION['compWonDeck'], $computerChoice[$compIndex]);
         array_push($_SESSION['compWonDeck'], $userChoice[$userIndex]);
 
-        var_dump(sizeof($_SESSION['compWonDeck']));
+        //var_dump(sizeof($_SESSION['compWonDeck']));
+        //var_dump(sizeof($_SESSION['userWonDeck']));
 
         array_splice($_SESSION['compDeck'], $compIndex, 1);
         array_splice($_SESSION['userDeck'], $userIndex, 1);
@@ -80,7 +72,9 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         $compDeckSize = sizeof($_SESSION['compDeck']);
         $userDeckSize = sizeof($_SESSION['userDeck']);
 
-    }else if ($computerChoice === $userChoice){
+       // var_dump($computerChoice[$compIndex]);
+
+    }else if ($computerChoice === $userChoice){      //nie działa prawidłowo, jeśli każdemu zostało po 1 karcie
         $wynik ="Wojna!<br>";
 
         array_push($_SESSION['warDeck'], $computerChoice[$compIndex]);
@@ -96,12 +90,10 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
 
         $_SESSION["myPoints"] += $userScore + $computerScore;
 
-
-
         array_push($_SESSION['userWonDeck'], $computerChoice[$compIndex]);
         array_push($_SESSION['userWonDeck'], $userChoice[$userIndex]);
 
-        var_dump(sizeof($_SESSION['userWonDeck']));
+        //var_dump(sizeof($_SESSION['userWonDeck']));
 
         array_splice($_SESSION['compDeck'], $compIndex, 1);
         array_splice($_SESSION['userDeck'], $userIndex, 1);
@@ -115,11 +107,9 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
 
     }
 
-
     if($_GET['choice'] === "end"){
         header("Location: index.php");
     }
-
 
 }else{
     setBasePoints();
@@ -130,40 +120,27 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
     $_SESSION['compDeck'] = [];
     $_SESSION['userDeck'] = [];
     $_SESSION['warDeck'] = [];
-
-}
-
-
-
-if($_SESSION["compPoints"] >= 100){
-    echo "<br><h1>Komputer wygrywa wojnę</h1>";
-    setBasePoints();
-}
-if($_SESSION["myPoints"] >= 100){
-    echo "<br><h1>Gracz wygrywa wojnę</h1>";
-    setBasePoints();
 }
 
 if(empty($_SESSION['compDeck'])){
-    $_SESSION['compDeck'] = array_merge($_SESSION['compDeck'], $_SESSION['compWonDeck']);
+    if(!empty($_SESSION['compWonDeck'])){
+        $_SESSION['compDeck'] = array_merge($_SESSION['compDeck'], $_SESSION['compWonDeck']);
+        $_SESSION['compWonDeck'] = [];
+        //var_dump($_SESSION['compDeck']);
+    }else{
+        echo "<br><h1>Koniec kart! Gracz wygrywa wojnę!</h1>";
+    }
+
 }
 if(empty($_SESSION['userDeck'])){
-    $_SESSION['userDeck'] = array_merge($_SESSION['userDeck'], $_SESSION['userWonDeck']);
+    if(!empty($_SESSION['userWonDeck'])){
+        $_SESSION['userDeck'] = array_merge($_SESSION['userDeck'], $_SESSION['userWonDeck']);
+        $_SESSION['userWonDeck'] = [];
+        //var_dump($_SESSION['userDeck']);
+    }else{
+        echo "<br><h1>Koniec kart! Komputer wygrywa wojnę</h1>";
+    }
 }
-
-
-/*if($compDeckSize < 1){
-    $_SESSION['compDeck'] = array_merge($_SESSION['compDeck'], $_SESSION['compWonDeck']);
-
-    echo sizeof($_SESSION['compDeck']);
-    echo sizeof($_SESSION['compWonDeck']);
-
-}
-if($userDeckSize < 1){
-    // array_push($_SESSION['userDeck'], $_SESSION['userWonDeck']);
-    echo "user";
-}*/
-
 
 ?>
 
@@ -188,9 +165,11 @@ if($userDeckSize < 1){
         echo $wynik;
         echo "Komputer:".$_SESSION["compPoints"];
         echo '<div><img class="card" src='.$computerChoice[$compIndex]["img"].'></div>';
+        //echo '<div><img class="card" src='.$_SESSION['compDeck'][$compIndex]["img"].'></div>';
         echo "pozostałe karty: ".$compDeckSize."<br>";
         echo "Gracz:".$_SESSION["myPoints"];
         echo '<div><img class="card" src='.$userChoice[$userIndex]["img"].'></div>';
+        //echo '<div><img class="card" src='.$_SESSION['userDeck'][$userIndex]["img"].'></div>';
         echo "pozostałe karty: ".$userDeckSize."<br>";
     }
     ;?>
