@@ -7,3 +7,24 @@
  */
 
 // TOMEK
+
+
+//function categoryUpdateOneById PDO $pdo int $id string $name: array <category>
+
+
+function categoryUpdateOneById(PDO $pdo, int $id, string $name): array {
+
+    $category = [
+        'id' => $id,
+        'name' => $name,
+    ];
+    
+    $statement = $pdo->prepare("
+        UPDATE category set
+            name = :name,
+        WHERE id = :id
+    ");
+
+    $statement->execute($category);
+    return $category;
+}
