@@ -1,9 +1,11 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+function categoryFindOneById(PDO $pdo, int $id): array {
+    $statement = $pdo->prepare("SELECT * FROM category WHERE id = :id");
+    $statement->execute(['id' => $id]);
+
+    $category = $statement->fetch();
+    return $category ? $category : [];
+}
 
 // OSKAR
