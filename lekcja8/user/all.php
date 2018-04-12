@@ -1,6 +1,7 @@
 <?php
 require_once '../partial_view/header.php';
 
+$users = userFindAll($pdo);
 
 //Find all users here
 ?>
@@ -21,11 +22,21 @@ require_once '../partial_view/header.php';
     </tr>
     <?php
     // Iterate all users
-    // 
+    foreach ($users as $user) {
+        echo "<tr>
+     <td>{$user['id']}</td>
+     <td>{$user['first_name']}</td>
+     <td>{$user['last_name']}</td>
+     <td>{$user['email']}</td>
+     <td>{$user['city']}</td>
+        <td>
+         <a href='view.php?id={$user['id']}'>View</a>
+         <a href='update.php?id={$user['id']}'>Update</a>
+         <a href='delete.php?id={$user['id']}'>Delete</a>
+       </td>
+       </tr>";
+    }
     // Add actions to each row
-    // <a href='view.php?id={$user['id']}'>View</a>
-    // <a href='update.php?id={$user['id']}'>Update</a>
-    // <a href='delete.php?id={$user['id']}'>Delete</a>
     ?>
 </table>
 
