@@ -1,9 +1,21 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 // Łukasz
+
+function categoryInsertOne(PDO $pdo, string $name): array {
+    $category = [
+        'name' => $name,
+    ];
+
+    $statement =  $pdo->prepare("
+        INSERT into category (name)
+        VALUES(:name) 
+    ");
+
+
+    $statement->execute($category);
+
+    $category['id'] = (int)$pdo->lastInsertId();
+
+    return $category;
+}

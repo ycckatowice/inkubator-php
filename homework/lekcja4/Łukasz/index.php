@@ -16,7 +16,7 @@ if(empty($_SESSION['compDeck']) || empty($_SESSION['userDeck'])){
     $_SESSION['userDeck'] = $data;
 }
 
-function setBasePoints() //zmienić nazwę funkcji na bardziej przyjazną :v
+function setBasePoints()
 {
     $_SESSION["myPoints"] = BASE_POINTS;
     $_SESSION["compPoints"] = BASE_POINTS;
@@ -28,13 +28,13 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         $compDeckSize = sizeof($_SESSION['compDeck']) -1;
     }
 
-    $compIndex = rand(0, $compDeckSize);
+    $compIndex = array_rand($_SESSION['compDeck']);
     $computerChoice[$compIndex] = $_SESSION['compDeck'][$compIndex];
 
     if(!isset($userDeckSize)){
         $userDeckSize = sizeof($_SESSION['userDeck']) -1;
     }
-    $userIndex = rand(0, $userDeckSize);
+    $userIndex = array_rand($_SESSION['userDeck']);
     $userChoice[$userIndex] = $_SESSION['userDeck'][$userIndex];
 
     if(!isset($_SESSION['compWonDeck']) || !isset($_SESSION['userWonDeck']) || !isset($_SESSION['warDeck'])){
@@ -59,6 +59,9 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         array_push($_SESSION['compWonDeck'], $computerChoice[$compIndex]);
         array_push($_SESSION['compWonDeck'], $userChoice[$userIndex]);
 
+        //$_SESSION['compWonDeck'] = array_merge($_SESSION['compWonDeck'], $computerChoice[$compIndex]);
+        //$_SESSION['compWonDeck'] = array_merge($_SESSION['compWonDeck'], $userChoice[$userIndex]);
+
         //var_dump(sizeof($_SESSION['compWonDeck']));
         //var_dump(sizeof($_SESSION['userWonDeck']));
 
@@ -66,13 +69,18 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         array_splice($_SESSION['userDeck'], $userIndex, 1);
 
         if(!empty($_SESSION['warDeck'])){
-            array_push($_SESSION['compWonDeck'], $_SESSION['warDeck']);
+            $_SESSION['warDeck'] = array_merge($_SESSION['compWonDeck'], $_SESSION['warDeck']);
         }
 
         $compDeckSize = sizeof($_SESSION['compDeck']);
         $userDeckSize = sizeof($_SESSION['userDeck']);
 
-       // var_dump($computerChoice[$compIndex]);
+        var_dump($computerChoice[$compIndex]);
+        var_dump($userChoice[$userIndex]);
+
+        var_dump($compIndex);
+        var_dump($userIndex);
+
 
     }else if ($computerChoice === $userChoice){      //nie działa prawidłowo, jeśli każdemu zostało po 1 karcie
         $wynik ="Wojna!<br>";
@@ -80,10 +88,19 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         array_push($_SESSION['warDeck'], $computerChoice[$compIndex]);
         array_push($_SESSION['warDeck'], $userChoice[$userIndex]);
 
+        //$_SESSION['warDeck'] = array_merge($_SESSION['warDeck'], $computerChoice[$compIndex]);
+        //$_SESSION['warDeck'] = array_merge($_SESSION['warDeck'], $userChoice[$userIndex]);
+
         echo "warDeck: ". sizeof($_SESSION['warDeck']);
 
         $compDeckSize = sizeof($_SESSION['compDeck']);
         $userDeckSize = sizeof($_SESSION['userDeck']);
+
+        var_dump($computerChoice[$compIndex]);
+        var_dump($userChoice[$userIndex]);
+
+        var_dump($compIndex);
+        var_dump($userIndex);
 
     }else{
         $wynik = "Gracz wygrywa potyczkę <br>";
@@ -93,6 +110,9 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         array_push($_SESSION['userWonDeck'], $computerChoice[$compIndex]);
         array_push($_SESSION['userWonDeck'], $userChoice[$userIndex]);
 
+        //$_SESSION['userWonDeck'] = array_merge($_SESSION['userWonDeck'], $computerChoice[$compIndex]);
+        //$_SESSION['userWonDeck'] = array_merge($_SESSION['userWonDeck'], $userChoice[$userIndex]);
+
         //var_dump(sizeof($_SESSION['userWonDeck']));
 
         array_splice($_SESSION['compDeck'], $compIndex, 1);
@@ -102,9 +122,14 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
         $userDeckSize = sizeof($_SESSION['userDeck']);
 
         if(!empty($_SESSION['warDeck'])){
-            array_push($_SESSION['userWonDeck'], $_SESSION['warDeck']);
+            $_SESSION['warDeck'] = array_merge($_SESSION['userWonDeck'], $_SESSION['warDeck']);
         }
 
+        var_dump($computerChoice[$compIndex]);
+        var_dump($userChoice[$userIndex]);
+
+        var_dump($compIndex);
+        var_dump($userIndex);
     }
 
     if($_GET['choice'] === "end"){
@@ -122,23 +147,29 @@ if(isset($_GET['choice']) && $_GET['choice'] === "play"){
     $_SESSION['warDeck'] = [];
 }
 
-if(empty($_SESSION['compDeck'])){
+if(sizeof($_SESSION['compDeck']) <=1 ){
     if(!empty($_SESSION['compWonDeck'])){
         $_SESSION['compDeck'] = array_merge($_SESSION['compDeck'], $_SESSION['compWonDeck']);
         $_SESSION['compWonDeck'] = [];
-        //var_dump($_SESSION['compDeck']);
+        //  $_SESSION['compDeck'] = array_values($_SESSION['compDeck']);
+        var_dump($_SESSION['compDeck']);
     }else{
-        echo "<br><h1>Koniec kart! Gracz wygrywa wojnę!</h1>";
+        if(isset($_GET['choice']) && $_GET['choice'] === "play") {
+            echo "<br><h1>Koniec kart! Gracz wygrywa wojnę!</h1>";
+        }
     }
 
 }
-if(empty($_SESSION['userDeck'])){
+if(sizeof($_SESSION['userDeck']) <=1 ){
     if(!empty($_SESSION['userWonDeck'])){
         $_SESSION['userDeck'] = array_merge($_SESSION['userDeck'], $_SESSION['userWonDeck']);
         $_SESSION['userWonDeck'] = [];
-        //var_dump($_SESSION['userDeck']);
+        //$_SESSION['userDeck'] = array_values($_SESSION['userDeck']);
+        var_dump($_SESSION['userDeck']);
     }else{
-        echo "<br><h1>Koniec kart! Komputer wygrywa wojnę</h1>";
+        if(isset($_GET['choice']) && $_GET['choice'] === "play") {
+            echo "<br><h1>Koniec kart! Komputer wygrywa wojnę</h1>";
+        }
     }
 }
 
