@@ -1,8 +1,28 @@
 <?php
+require_once '../partial_view/header.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+// getRequestPostVariables
+$name = getRequestPostVariable('name');
+
+
+if($name){
+    $category = categoryInsertOne($pdo, $name);
+    header('Location: /lekcja8/category/all.php?addedId=' . $category['id']);
+}
+
+?>
+
+    <form class="form-group" action="create.php" method="POST">
+        <div>
+            Category name:
+            <input class="form-control" type="text" name="name" required>
+        </div>
+        <div>
+            <input type="submit" value="Create">
+        </div>
+    </form>
+
+<?php
+require_once '../partial_view/footer.php';
+?>
