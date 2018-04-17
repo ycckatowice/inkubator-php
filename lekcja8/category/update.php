@@ -14,10 +14,10 @@ if(!$id){
 
 //userFindOneById
 
-$user = categoryFindOneById($pdo, (int) $id);
+$category = categoryFindOneById($pdo, (int) $id);
 // if no user redirect: /lekcja8/category/all.php?userNotExistsId=' . $id
 
-if(!$user){
+if(!$category){
     header('Location: /lekcja8/category/all.php?categoryNotExistsId=' . $id);
 }
 
@@ -30,8 +30,8 @@ $name = getRequestPostVariable('name');
 // - city
 
 if($name){
-    $user = categoryUpdateOneById($pdo, (int) $id, $name);
-    header('Location: /lekcja8/category/all.php?updatedId=' . $user['id']);
+    $category = categoryUpdateOneById($pdo, (int) $id, $name);
+    header('Location: /lekcja8/category/all.php?updatedId=' . $category['id']);
 }
 
 // check if all set
@@ -52,7 +52,7 @@ if($name){
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
         Category:
-        <input class="form-control" type="text" name="first_name" required value="<?= $name? $name: $user['name'] ?>">
+        <input class="form-control" type="text" name="first_name" required value="<?= $name? $name: $category['name'] ?>">
     </div>
     <div>
         <input type="submit" value="Update">
