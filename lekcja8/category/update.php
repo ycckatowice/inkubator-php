@@ -47,7 +47,7 @@ if($name){
 ?>
 
 
-<h1>category id: <?= $user['id'] ?> </h1>
+<h1>category id: <?= $category['id'] ?> </h1>
 
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
