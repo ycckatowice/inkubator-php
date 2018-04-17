@@ -9,16 +9,16 @@ require_once '../partial_view/header.php';
 $id = getRequestGetVariable('id');
 // if not set redirect:  /lekcja8/user/all.php?selectId
 if(!$id){
-    header('Location: /lekcja8/user/all.php?selectId');
+    header('Location: /lekcja8/category/all.php?selectId');
 }
 
 //userFindOneById
 
-$user = userFindOneById($pdo, (int) $id);
-// if no user redirect: /lekcja8/user/all.php?userNotExistsId=' . $id
+$user = categoryFindOneById($pdo, (int) $id);
+// if no user redirect: /lekcja8/category/all.php?userNotExistsId=' . $id
 
 if(!$user){
-    header('Location: /lekcja8/user/all.php?userNotExistsId=' . $id);
+    header('Location: /lekcja8/category/all.php?categoryNotExistsId=' . $id);
 }
 
 // getRequestPostVariables 
@@ -30,8 +30,8 @@ $name = getRequestPostVariable('name');
 // - city
 
 if($name){
-    $user = userUpdateOneById($pdo, (int) $id, $name);
-    header('Location: /lekcja8/user/all.php?updatedId=' . $user['id']);
+    $user = categoryUpdateOneById($pdo, (int) $id, $name);
+    header('Location: /lekcja8/category/all.php?updatedId=' . $user['id']);
 }
 
 // check if all set
@@ -42,7 +42,7 @@ if($name){
 
 // > userUpdateOneById
 
-// redirect: /lekcja8/user/all.php?updatedId=' . $user['id']
+// redirect: /lekcja8/category/all.php?updatedId=' . $user['id']
 
 ?>
 
@@ -52,7 +52,7 @@ if($name){
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
         Category:
-        <input class="form-control" type="text" name="first_name" required value="<?= $name? $name: $user['first_name'] ?>">
+        <input class="form-control" type="text" name="first_name" required value="<?= $name? $name: $user['name'] ?>">
     </div>
     <div>
         <input type="submit" value="Update">
