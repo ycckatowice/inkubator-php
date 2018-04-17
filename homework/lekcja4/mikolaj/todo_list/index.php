@@ -5,7 +5,7 @@ session_start();
 
 if (!isset($_SESSION['task'])) {
     $_SESSION['task'] = [
-       0=> [
+        [
             'id' => 1,
             "name" => "Dodaj nowy task",
             "isDone" => false,

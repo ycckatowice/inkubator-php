@@ -16,7 +16,7 @@ $dane = [
         "opis" => "ciasto, ser, kabanos, cebula",
         "img" => "img/mafioso.png",
     ],
-    [   "id" => 13,
+    [   "id" => 3,
         "nazwa" => "hawai",
         "opis" => "ciasto, kabanos, cebula",
         "img" => "img/roma.png",

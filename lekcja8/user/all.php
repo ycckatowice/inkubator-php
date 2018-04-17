@@ -42,4 +42,4 @@ $users = userFindAll($pdo);
 
 <?php
 require_once '../partial_view/footer.php';
-
+    

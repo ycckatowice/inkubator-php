@@ -16,7 +16,7 @@ function requestGetVariable(string $name, string $default = ''): string {
     return $lol;
 }
 
-$id = requestGetVariable("id");
+//$id = requestGetVariable("id");
 /* nie potrafie utworzyc dobrego "ifa" zeby mi dzialal razem z ta funkcja, wydaje mi sie ze tak jest latwiej.
  */
 
@@ -106,31 +106,31 @@ $baza_Lokalna = json_decode(file_get_contents("baza.txt"), true);
             <?php
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-
-                for ($i = 0; $i <= count($gallery); $i++) {
+                
+                for ($i = 0; $i <= count($gallery); $i++) { 
 
 
 
                     if ($id == $i) {
 
                         echo '<a href="ZadDom.php"><img src="' . $gallery[$id]['img'] . '" class="img-fluid" alt="Responsive image"/></a> '
-                        . '<a class="btn btn-secondary like" href="ZadDom.php?id=' . $id . '&likeId=' . $gallery[$id]['likeId'] . ' &wstecz" role="button">Like</a>'
-                        . '<a class="btn btn-secondary dislike" href="ZadDom.php?id=' . $id . '&dislikeId=' . $gallery[$id]['dislikeId'] . '&wstecz" role="button">Dislike</a>';
+                        . '<a class="btn btn-secondary like" href="ZadDom.php?id=' . $id . '&likes=' . $gallery[$id]['likes'] . '" role="button">Like</a>'
+                        . '<a class="btn btn-secondary dislike" href="ZadDom.php?id=' . $id . '&dislikes=' . $gallery[$id]['dislikes'] . '" role="button">Dislike</a>';
 
-                        if (isset($_GET['likeId']) && isset($_GET['wstecz'])) {
+                        if (isset($_GET['likes']) ) {
                             //var_dump($baza_Lokalna);
-                            $baza_Lokalna[$id]['likeId'] += 1;
+                            $baza_Lokalna[$id]['likes'] += 1;
                             file_put_contents("baza.txt", json_encode($baza_Lokalna));
                             header("Location: ZadDom.php?id=$id");
-                        } elseif (isset($_GET['dislikeId']) && isset($_GET['wstecz'])) {
-                            $baza_Lokalna[$id]['dislikeId'] += 1;
+                        } elseif (isset($_GET['dislikes'])) {
+                            $baza_Lokalna[$id]['dislikes'] += 1;
                             file_put_contents("baza.txt", json_encode($baza_Lokalna));
                             header("Location: ZadDom.php?id=$id");
                         }
-                        if ($baza_Lokalna[$id]['likeId'] || $baza_Lokalna[$id]['dislikeId'] != 0) {
+                        if ($baza_Lokalna[$id]['likes'] || $baza_Lokalna[$id]['dislikes'] != 0) {
 
-                            echo '<h1>Likes: ' . $baza_Lokalna[$id]['likeId'];
-                            echo '<h1>Dislikes: ' . $baza_Lokalna[$id]['dislikeId'];
+                            echo '<h1>Likes: ' . $baza_Lokalna[$id]['likes'];
+                            echo '<h1>Dislikes: ' . $baza_Lokalna[$id]['dislikes'];
                         } else {
 
                             echo '<h1> Likes: 0 </h1>';
