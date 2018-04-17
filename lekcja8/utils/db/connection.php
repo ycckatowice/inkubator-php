@@ -36,6 +36,6 @@ function createDBConnection(string $host, string $dbName, string $username, stri
     return $pdo;
 }
 
-$pdo = createDBConnection("192.168.0.101", "ycckatowice_shop", "ycckatowice", "");
+$pdo = createDBConnection("localhost", "ycckatowice_shop", "root", "");
 
 

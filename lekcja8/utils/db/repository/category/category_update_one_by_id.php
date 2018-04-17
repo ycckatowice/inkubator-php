@@ -21,7 +21,7 @@ function categoryUpdateOneById(PDO $pdo, int $id, string $name): array {
     
     $statement = $pdo->prepare("
         UPDATE category set
-            name = :name,
+            name = :name
         WHERE id = :id
     ");
 
