@@ -21,9 +21,9 @@ $categories = categoryFindAll($pdo);
         echo "<tr>
      <td>{$category['name']}</td>
         <td>
-         <a href='view.php?id={$category['name']}'>View</a>
-         <a href='update.php?id={$category['name']}'>Update</a>
-         <a href='delete.php?id={$category['name']}'>Delete</a>
+         <a href='view.php?id={$category['id']}'>View</a>
+         <a href='update.php?id={$category['id']}'>Update</a>
+         <a href='delete.php?id={$category['id']}'>Delete</a>
        </td>
        </tr>";
     }
