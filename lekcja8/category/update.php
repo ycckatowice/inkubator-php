@@ -1,6 +1,6 @@
 <?php
 require_once '../partial_view/header.php';
-
+//Tomek
 
 // getRequestGetVariable id
 $id = getRequestGetVariable('id');
