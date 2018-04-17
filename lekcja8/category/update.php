@@ -1,8 +1,6 @@
-
-
 <?php
 require_once '../partial_view/header.php';
-
+//Tomek
 
 // getRequestGetVariable id
 $id = getRequestGetVariable('id');
@@ -11,10 +9,10 @@ if(!$id){
     header('Location: /lekcja8/category/all.php?selectId');
 }
 
-//userFindOneById
+//categoryFindOneById
 
 $category = categoryFindOneById($pdo, (int) $id);
-// if no user redirect: /lekcja8/category/all.php?userNotExistsId=' . $id
+// if no category redirect: /lekcja8/category/all.php?categoryNotExistsId=' . $id
 
 if(!$category){
     header('Location: /lekcja8/category/all.php?categoryNotExistsId=' . $id);
@@ -23,10 +21,8 @@ if(!$category){
 // getRequestPostVariables 
 $name = getRequestPostVariable('name');
 
-// - first_name
-// - last_name
-// - email
-// - city
+// - name
+
 
 if($name){
     $category = categoryUpdateOneById($pdo, (int) $id, $name);
@@ -35,11 +31,11 @@ if($name){
 
 // check if all set
 
-// > userInsertOne
+// > categoryInsertOne
 
 // > redirect: 
 
-// > userUpdateOneById
+// > categoryUpdateOneById
 
 // redirect: /lekcja8/category/all.php?updatedId=' . $user['id']
 
@@ -51,7 +47,7 @@ if($name){
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
         Category:
-        <input class="form-control" type="text" name="first_name" required value="<?= $name? $name: $category['name'] ?>">
+        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $category['name'] ?>">
     </div>
     <div>
         <input type="submit" value="Update">
