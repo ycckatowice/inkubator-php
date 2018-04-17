@@ -52,7 +52,7 @@ if($name){
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
         Category:
-        <input class="form-control" type="text" name="first_name" required value="<?= $name? $name: $category['name'] ?>">
+        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $category['name'] ?>">
     </div>
     <div>
         <input type="submit" value="Update">
