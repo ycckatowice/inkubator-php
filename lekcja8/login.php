@@ -5,12 +5,22 @@ $invalid = getRequestGetVariable('invalid');
 $login = getRequestPostVariable('login');
 $password = getRequestPostVariable('password');
 
+
+// Instrukcja do zaszyfrowania hasła metodą BCRYPT
+// w Bazie trzymamy zaszyfrowane hasła
 echo password_hash('admin1234', PASSWORD_BCRYPT);
 if ($login && $password) {
    
     $user = userFindOneByEmail($pdo, $login);
  
+    // password_verify
+    // Instrukcja sprawdzi czy ciąg znaków przekazany w formularzu 
+    // jako hasło jest zgodny z zaszyfrowanym hasłem w bazie
+    
     if ($user && password_verify($password, $user['password'])) {
+        // Zdeniniowaliśmy sobie class który się nazywa Authorization
+        // class authorization ma metodę statyczną(static) do której odnosimy się poprzez podójny dwukropek (::)
+        // metoda jest to funkcja która jest dostępna tylko w class
         Authorization::authorize($user);
         header('Location: /lekcja8/index.php');
     } else {
