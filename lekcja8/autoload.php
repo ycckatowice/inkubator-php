@@ -26,7 +26,7 @@ require_once __DIR__. '/utils/db/repository/category/category_insert_one_by_id.p
 //DB Product
 require_once __DIR__. '/utils/db/model/Product.php';
 require_once __DIR__. '/utils/db/repository/product/ProductRepository.php';
-require_once __DIR__. '/utils/db/repository/product/product_delete_one_by_id.php';
+//require_once __DIR__. '/utils/db/repository/product/product_delete_one_by_id.php';
 
 
 // Auth
