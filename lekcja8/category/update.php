@@ -11,10 +11,10 @@ if(!$id){
 
 //categoryFindOneById
 
-$category = categoryFindOneById($pdo, (int) $id);
+$product = categoryFindOneById($pdo, (int) $id);
 // if no category redirect: /lekcja8/category/all.php?categoryNotExistsId=' . $id
 
-if(!$category){
+if(!$product){
     header('Location: /lekcja8/category/all.php?categoryNotExistsId=' . $id);
 }
 
@@ -25,8 +25,8 @@ $name = getRequestPostVariable('name');
 
 
 if($name){
-    $category = categoryUpdateOneById($pdo, (int) $id, $name);
-    header('Location: /lekcja8/category/all.php?updatedId=' . $category['id']);
+    $product = categoryUpdateOneById($pdo, (int) $id, $name);
+    header('Location: /lekcja8/category/all.php?updatedId=' . $product['id']);
 }
 
 // check if all set
@@ -42,12 +42,12 @@ if($name){
 ?>
 
 
-<h1>category id: <?= $category['id'] ?> </h1>
+<h1>category id: <?= $product['id'] ?> </h1>
 
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
         Category:
-        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $category['name'] ?>">
+        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $product['name'] ?>">
     </div>
     <div>
         <input type="submit" value="Update">

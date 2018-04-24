@@ -10,10 +10,10 @@ if(!$id){
 
 //categoryFindOneById
 
-$category = categoryFindOneById($pdo, (int) $id);
+$product = categoryFindOneById($pdo, (int) $id);
 // if no user redirect: /lekcja8/user/all.php?userNotExistsId=' . $id
 
-if(!$category){
+if(!$product){
     header('Location: /lekcja8/category/all.php?categoryNotExistsId=' . $id);
 }
 
@@ -25,11 +25,11 @@ if(!$category){
 <table class="table">
     <tr>
         <td>Id</td>
-        <td><?= $category['id'] ?></td>
+        <td><?= $product['id'] ?></td>
     </tr>
     <tr>
         <td>Name</td>
-        <td><?= $category['name'] ?></td>
+        <td><?= $product['name'] ?></td>
     </tr>
 </table>
 

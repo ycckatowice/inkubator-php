@@ -7,8 +7,8 @@ $name = getRequestPostVariable('name');
 
 
 if($name){
-    $category = categoryInsertOne($pdo, $name);
-    header('Location: /lekcja8/category/all.php?addedId=' . $category['id']);
+    $product = categoryInsertOne($pdo, $name);
+    header('Location: /lekcja8/category/all.php?addedId=' . $product['id']);
 }
 
 ?>

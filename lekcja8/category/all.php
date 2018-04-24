@@ -1,5 +1,6 @@
 <?php
 require_once '../partial_view/header.php';
+Authorization::checkPermissions();
 
 $categories = categoryFindAll($pdo);
 
@@ -17,13 +18,13 @@ $categories = categoryFindAll($pdo);
     </tr>
     <?php
     // Iterate all users
-    foreach ($categories as $category) {
+    foreach ($categories as $product) {
         echo "<tr>
-     <td>{$category['name']}</td>
+     <td>{$product['name']}</td>
         <td>
-         <a href='view.php?id={$category['id']}'>View</a>
-         <a href='update.php?id={$category['id']}'>Update</a>
-         <a href='delete.php?id={$category['id']}'>Delete</a>
+         <a href='view.php?id={$product['id']}'>View</a>
+         <a href='update.php?id={$product['id']}'>Update</a>
+         <a href='delete.php?id={$product['id']}'>Delete</a>
        </td>
        </tr>";
     }
