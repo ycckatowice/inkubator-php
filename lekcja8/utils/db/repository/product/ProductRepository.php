@@ -79,6 +79,7 @@ class ProductRepository {
      * Zwracamy typ danych taki jak klasa Product. Plik Product.php który zawiera klasę Product musi być załądowany w autoload
      */
     public function findOneById(int $id): ?Product {
+
         $statement = $this->pdo->prepare("SELECT * FROM product WHERE id = :id");
         $statement->execute(['id' => $id]);
 
@@ -89,6 +90,7 @@ class ProductRepository {
          * Plik Product.php który zawiera klasę Product musi być załądowany w autoload
          */
         $user = $statement->fetchObject("Product");
+
         return $user ? $user : NULL;
     }
 
