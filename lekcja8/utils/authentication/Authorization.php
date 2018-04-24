@@ -16,7 +16,7 @@
 // czyli: Authorization::authorize($user)
 //
 class Authorization {
-
+    
     /**
      * Stałe wartości w klasie. Nie da się ich nadpisać. 
      * Będą dostępne poprzez wywołanie: Authorization::ROLE_ANONYMOUS
