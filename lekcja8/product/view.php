@@ -6,8 +6,9 @@ require_once '../partial_view/header.php';
 // getRequestGetVariable id
 $id = getRequestGetVariable('id');
 // if not set redirect:  /lekcja8/product/all.php?selectId
+
 if(!$id){
-    header('Location: /lekcja8/product/all.php?selectId');
+   // header('Location: /lekcja8/product/all.php?selectId');
 }
 
 //productFindOneById
@@ -22,8 +23,8 @@ $product = $productRepository->findOneById((int) $id);
 //$product = ($pdo, (int) $id);
 // if no user redirect: /lekcja8/product/all.php?productNotExistsId=' . $id
 
-if(!$produkt){
-   header('Location: /lekcja8/product/all.php?productNotExistsId=' . $id);
+if(!$product){
+   //header('Location: /lekcja8/product/all.php?productNotExistsId=' . $id);
 }
 
 
