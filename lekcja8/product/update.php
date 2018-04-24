@@ -34,7 +34,7 @@ if($name && $category_id && $cost){
   
     $product->name = "$name";
     $updateProduct->updateOne($product);
-    header('Location: /lekcja8/category/all.php?updatedId=' . $product->id);
+    header('Location: /lekcja8/product/all.php?updatedId=' . $product->id);
 }
 
 // check if all set
