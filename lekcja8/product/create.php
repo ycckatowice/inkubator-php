@@ -2,4 +2,4 @@
 // Mariusz
 require_once '../partial_view/header.php';
 
-categoryInsertOne
+categoryInsertOne($pdo, );
