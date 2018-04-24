@@ -11,13 +11,13 @@ if(!$id){
 
 //productFindOneById
 
-$product = productFindOneById($pdo, (int) $id);
-// if no user redirect: /lekcja8/product/all.php?productNotExistsId=' . $id
+$productRepository = new ProductRepository($pdo);
 
+$product = $productRepository->findOneById($id);
 if(!$product){
     header('Location: /lekcja8/product/all.php?productNotExistsId=' . $id);
 }
 
-productDeleteOneById($pdo, (int) $id);
+$productRepository->deleteOneById($id);
 header('Location: /lekcja8/product/all.php?deletedId=' . $id);
 
