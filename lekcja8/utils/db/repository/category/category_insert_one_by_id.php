@@ -1,6 +1,6 @@
 <?php
 
-// Åukasz
+// Å?ukasz
 
 function categoryInsertOne(PDO $pdo, string $name): array {
     $category = [

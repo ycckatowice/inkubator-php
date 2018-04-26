@@ -37,6 +37,11 @@ class Product {
     function getId(): int {
         return $this->id;
     }
+    
+    function setId(int $id): void {
+         $this->id = $id;
+        
+    }
 
     function getCategoryId(): int {
         return $this->categoryId;

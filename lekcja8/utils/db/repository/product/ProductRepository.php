@@ -113,7 +113,7 @@ class ProductRepository {
 
 
         $statement->execute($productParams);
-        $product->id = (int) $this->pdo->lastInsertId();
+        $product->setId((int) $this->pdo->lastInsertId());
         return $product;
     }
 
