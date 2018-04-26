@@ -24,7 +24,7 @@ if(!$product){
 
 // getRequestPostVariables 
 $name = getRequestPostVariable('name');
-$category_id = getRequestPostVariable('category_id');
+$categoryId = getRequestPostVariable('category_id');
 $cost = getRequestPostVariable('cost');
 
 // - first_name
@@ -32,10 +32,13 @@ $cost = getRequestPostVariable('cost');
 // - email
 // - city
 
-if($name && $category_id && $cost){
+if($name && $categoryId && $cost){
   
     $product->setName($name);
+    $product->setCost($cost);
+    $product->setCategoryId($categoryId);
     $updateProduct->updateOne($product);
+    
     header('Location: /lekcja8/product/all.php?updatedId=' . $product->getId());
 }
 
@@ -65,7 +68,7 @@ if($name && $category_id && $cost){
     </div>
     <div>
         Category id:
-        <input class="form-control" type="text" name="category_id" required  value="<?= $category_id? $category_id: $product->getCategoryId() ?>">
+        <input class="form-control" type="text" name="category_id" required  value="<?= $categoryId? $categoryId: $product->getCategoryId() ?>">
     </div>
     <div>
         <input type="submit" value="Update">
