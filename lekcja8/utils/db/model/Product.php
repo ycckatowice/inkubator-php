@@ -10,7 +10,7 @@
  * pokażą nam się podpowiedzi w NetBeans, lub możemy kliknąć ctrl+spacja aby wymusić pokazanie podpowiedzi
  * 
  */
-class Product {
+class Product implements ProductInterface{
 
     /**
      * @var int
@@ -59,7 +59,7 @@ class Product {
         $this->cost = $cost;
     }
 
-    public static function createFromDB(int $id, string $name, int $categoryId, float $cost): Product {
+    public static function createFromDB(int $id, string $name, int $categoryId, float $cost): ProductInterface {
         $product = new self($name, $categoryId, $cost);
         $product->id = $id;
         

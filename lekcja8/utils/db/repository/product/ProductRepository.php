@@ -14,7 +14,7 @@
 // tj. 
 // - publiczne - dostępne są zawsze po wywołaniu konstrukcji (new ProductRepository($pdo))
 //
-class ProductRepository {
+class ProductRepository implements ProductRepositoryInterface {
 
     /**
      * Publiczny wartość która będzie w obiekcie
@@ -77,7 +77,7 @@ class ProductRepository {
      * 
      * Zwracamy typ danych taki jak klasa Product. Plik Product.php który zawiera klasę Product musi być załądowany w autoload
      */
-    public function findOneById(int $id): ?Product {
+    public function findOneById(int $id): ?ProductInterface {
 
         $statement = $this->pdo->prepare("SELECT * FROM product WHERE id = :id");
         $statement->execute(['id' => $id]);
@@ -99,7 +99,7 @@ class ProductRepository {
      * $productRepository = new ProductRepository($pdo)
      * 
      */
-    public function insertOne(Product $product): Product {
+    public function insertOne(ProductInterface $product): ProductInterface {
         $productParams = [
             'name' => $product->getName(),
             'category_id' => $product->getCategoryId(),
@@ -122,7 +122,7 @@ class ProductRepository {
      * $productRepository = new ProductRepository($pdo)
      * 
      */
-    public function updateOne(Product $product): Product {
+    public function updateOne(ProductInterface $product): ProductInterface {
 
         if (!$product->getId()) {
             throw new Exception('Product::updateOne error. Product must have id');

@@ -1,7 +1,7 @@
 <?php
 
 // Request
-require_once __DIR__. '/utils/authentication/authentication.php';
+require_once __DIR__ . '/utils/authentication/authentication.php';
 
 require_once __DIR__ . '/utils/request/get_request_get_variable.php';
 require_once __DIR__ . '/utils/request/get_request_post_variable.php';
@@ -18,18 +18,32 @@ require_once __DIR__ . '/utils/db/repository/user/user_delete_one_by_id.php';
 // DB Category
 
 
-require_once __DIR__. '/utils/db/repository/category/category_delete_one_by_id.php';
-require_once __DIR__. '/utils/db/repository/category/category_find_all.php';
-require_once __DIR__. '/utils/db/repository/category/category_find_one_by_id.php';
-require_once __DIR__. '/utils/db/repository/category/category_insert_one_by_id.php';
+require_once __DIR__ . '/utils/db/repository/category/category_delete_one_by_id.php';
+require_once __DIR__ . '/utils/db/repository/category/category_find_all.php';
+require_once __DIR__ . '/utils/db/repository/category/category_find_one_by_id.php';
+require_once __DIR__ . '/utils/db/repository/category/category_insert_one_by_id.php';
 
 
-//DB Product
-require_once __DIR__. '/utils/db/model/Product.php';
-require_once __DIR__. '/utils/db/repository/product/ProductRepository.php';
-//require_once __DIR__. '/utils/db/repository/product/product_delete_one_by_id.php';
+//DB Models
+require_once __DIR__ . '/utils/db/model/ProductInterface.php';
+require_once __DIR__ . '/utils/db/model/UserInterface.php';
+require_once __DIR__ . '/utils/db/model/CategoryInterface.php';
+require_once __DIR__ . '/utils/db/model/OrderInterface.php';
 
+require_once __DIR__ . '/utils/db/model/Product.php';
+require_once __DIR__ . '/utils/db/model/Category.php';
+require_once __DIR__ . '/utils/db/model/User.php';
+require_once __DIR__ . '/utils/db/model/Order.php';
+
+// DB Repositories
+require_once __DIR__ . '/utils/db/repository/category/CategoryRepositoryInterface.php';
+require_once __DIR__ . '/utils/db/repository/user/UserRepositoryInterface.php';
+require_once __DIR__ . '/utils/db/repository/product/ProductRepositoryInterface.php';
+
+require_once __DIR__ . '/utils/db/repository/category/CategoryRepository.php';
+require_once __DIR__ . '/utils/db/repository/user/UserRepository.php';
+require_once __DIR__ . '/utils/db/repository/product/ProductRepository.php';
 
 // Auth
 
-require_once __DIR__. '/utils/authentication/Authorization.php';
+require_once __DIR__ . '/utils/authentication/Authorization.php';
