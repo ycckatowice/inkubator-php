@@ -37,19 +37,19 @@ if(!$product){
 <table class="table">
     <tr>
         <td>Id</td>
-        <td><?= $product->id ?></td>
+        <td><?= $product->getId() ?></td>
     </tr>
     <tr>
         <td>Product name</td>
-        <td><?= $product->name ?></td>
+        <td><?= $product->getName() ?></td>
     </tr>
     <tr>
         <td>Category id</td>
-        <td><?= $product->category_id ?></td>
+        <td><?= $product->getCategoryId() ?></td>
     </tr>
     <tr>
         <td>Cost</td>
-        <td><?= $product->cost ?></td>
+        <td><?= $product->getCost() ?></td>
     </tr>
 </table>
 
