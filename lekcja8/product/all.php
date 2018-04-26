@@ -20,11 +20,11 @@ $products = $productRepository->findAll();
     // Iterate all users
     foreach ($products as $product) {
         echo "<tr>
-     <td>{$product->name}</td>
+     <td>{$product->getName()}</td>
         <td>
-         <a href='view.php?id={$product->id}'>View</a>
-         <a href='update.php?id={$product->id}'>Update</a>
-         <a href='delete.php?id={$product->id}'>Delete</a>
+         <a href='view.php?id={$product->getId()}'>View</a>
+         <a href='update.php?id={$product->getId()}'>Update</a>
+         <a href='delete.php?id={$product->getId()}'>Delete</a>
        </td>
        </tr>";
     }
