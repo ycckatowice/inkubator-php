@@ -39,4 +39,12 @@ if ($login && $password) {
 </form>
 
 
-
+<div>
+    <div class="alert-success">
+        <br><b>Login: </b> mikolaj@inkubator.com
+        <br><b>Pass:</b> asdf1234
+        <br><b>Login: </b> oskar@inkubator.com
+        <br><b>Pass:</b> 12346
+        
+    </div>
+</div>
