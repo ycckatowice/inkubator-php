@@ -2,6 +2,8 @@
 
 //TOMEK
 require_once '../partial_view/header.php';
+Authorization::checkPermissions();
+
 
 // getRequestGetVariable id
 $id = getRequestGetVariable('id');

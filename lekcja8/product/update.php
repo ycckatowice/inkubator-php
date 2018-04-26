@@ -1,5 +1,7 @@
 <?php
 require_once '../partial_view/header.php';
+Authorization::checkPermissions();
+
 
 $updateProduct= new ProductRepository($pdo);
 
