@@ -9,17 +9,17 @@ $updateProduct= new ProductRepository($pdo);
 $id = getRequestGetVariable('id');
 // if not set redirect:  /lekcja8/user/all.php?selectId
 if(!$id){
-   //    header('Location: /lekcja8/user/all.php?selectId');
+       header('Location: /lekcja8/product/all.php?selectId');
 }
 
 //userFindOneById
 
 $product = $updateProduct->findOneById( (int) $id);
 
-// if no user redirect: /lekcja8/user/all.php?userNotExistsId=' . $id
+// if no user redirect: /lekcja8/user/all.php?productNotExistsId=' . $id
 
 if(!$product){
-    header('Location: /lekcja8/user/all.php?userNotExistsId=' . $id);
+    header('Location: /lekcja8/product/all.php?productNotExistsId=' . $id);
 }
 
 // getRequestPostVariables 
@@ -34,9 +34,9 @@ $cost = getRequestPostVariable('cost');
 
 if($name && $category_id && $cost){
   
-    $product->name = "$name";
+    $product->setName($name);
     $updateProduct->updateOne($product);
-    header('Location: /lekcja8/product/all.php?updatedId=' . $product->id);
+    header('Location: /lekcja8/product/all.php?updatedId=' . $product->getId());
 }
 
 // check if all set
@@ -52,20 +52,20 @@ if($name && $category_id && $cost){
 ?>
 
 
-<h1>Product id: <?= $product->id ?> </h1>
+<h1>Product id: <?= $product->getId() ?> </h1>
 
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
          Name:
-        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $product->name ?>">
+         <input class="form-control" type="text" name="name" required value="<?= $name? $name: $product->getName() ?>">
     </div>
     <div>
         Cost:
-        <input class="form-control" type="text" name="cost" required  value="<?= $cost? $cost: $product->cost ?>">
+        <input class="form-control" type="text" name="cost" required  value="<?= $cost? $cost: $product->getCost() ?>">
     </div>
     <div>
         Category id:
-        <input class="form-control" type="text" name="category_id" required  value="<?= $category_id? $category_id: $product->category_id ?>">
+        <input class="form-control" type="text" name="category_id" required  value="<?= $category_id? $category_id: $product->getCategoryId() ?>">
     </div>
     <div>
         <input type="submit" value="Update">
