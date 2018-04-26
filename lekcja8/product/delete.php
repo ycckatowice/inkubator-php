@@ -1,6 +1,8 @@
 <?php
 
 require_once '../autoload.php';
+Authorization::checkPermissions();
+
 
 // getRequestGetVariable id
 $id = getRequestGetVariable('id');

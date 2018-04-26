@@ -1,6 +1,6 @@
 <?php
 require_once '../partial_view/header.php';
-//Authorization::checkPermissions();
+Authorization::checkPermissions();
 
 $productRepository = new ProductRepository($pdo);
 $products = $productRepository->findAll();
