@@ -56,8 +56,7 @@ class ProductRepository {
          * w ten sposób zrobimy sobie obiekty typu Product które powiedzą nam jakie wartości są w bazie danych
          * Plik Product.php który zawiera klasę Product musi być załądowany w autoload
          */
-        $users = $statement->fetchAll(PDO::FETCH_CLASS, "Product");
-
+        $users = $statement->fetchAll(PDO::FETCH_FUNC, "Product::createFromDB");
         return $users;
     }
 
@@ -89,9 +88,10 @@ class ProductRepository {
          * w ten sposób zrobimy sobie obiekty typu Product które powiedzą nam jakie wartości są w bazie danych
          * Plik Product.php który zawiera klasę Product musi być załądowany w autoload
          */
-        $user = $statement->fetchObject("Product");
+        
+        $users = $statement->fetchAll(PDO::FETCH_FUNC, "Product::createFromDB");
 
-        return $user ? $user : NULL;
+        return !empty($users) ? $users[0] : NULL;
     }
 
     /**
@@ -101,9 +101,9 @@ class ProductRepository {
      */
     public function insertOne(Product $product): Product {
         $productParams = [
-            'name' => $product->name,
-            'category_id' => $product->category_id,
-            'cost' => $product->cost
+            'name' => $product->getName(),
+            'category_id' => $product->getCategoryId(),
+            'cost' => $product->getCost()
         ];
 
         $statement = $this->pdo->prepare("
@@ -124,15 +124,15 @@ class ProductRepository {
      */
     public function updateOne(Product $product): Product {
 
-        if (!$product->id) {
+        if (!$product->getId()) {
             throw new Exception('Product::updateOne error. Product must have id');
         }
 
         $productParams = [
-            'id' => $product->id,
-            'name' => $product->name,
-            'category_id' => $product->category_id,
-            'cost' => $product->cost
+            'id' => $product->getId(),
+            'name' => $product->getName(),
+            'category_id' => $product->getCategoryId(),
+            'cost' => $product->getCost()
         ];
 
         $statement = $this->pdo->prepare("
