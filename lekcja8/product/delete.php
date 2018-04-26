@@ -20,6 +20,6 @@ if(!$product){
     header('Location: /lekcja8/product/all.php?productNotExistsId=' . $id);
 }
 
-$productRepository->deleteOneById($id);
+$productRepository->deleteOneById($product->getId());
 header('Location: /lekcja8/product/all.php?deletedId=' . $id);
 
