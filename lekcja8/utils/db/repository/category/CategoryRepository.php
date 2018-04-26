@@ -1,8 +1,8 @@
 <?php
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Tomek
+ * Wzorując się na pliku: lekcja8/utils/db/repository/product/ProductRepository.php
+ * Utwórz repozytorium dla CategoryRepository ktory zaimplementuje interface CategoryRepositoryInterface oraz wszystkie jego metody
  */
 
