@@ -11,10 +11,10 @@ if(!$id){
 
 //categoryFindOneById
 
-$product = categoryFindOneById($pdo, (int) $id);
+$category = categoryFindOneById($pdo, (int) $id);
 // if no category redirect: /lekcja8/category/all.php?categoryNotExistsId=' . $id
 
-if(!$product){
+if(!$category){
     header('Location: /lekcja8/category/all.php?categoryNotExistsId=' . $id);
 }
 
@@ -25,7 +25,8 @@ $name = getRequestPostVariable('name');
 
 
 if($name){
-    $product = categoryUpdateOneById($pdo, (int) $id, $name);
+    $category = categoryUpdateOneById($pdo, (int) $id, $name);
+    
     header('Location: /lekcja8/category/all.php?updatedId=' . $product['id']);
 }
 
@@ -42,12 +43,12 @@ if($name){
 ?>
 
 
-<h1>category id: <?= $product['id'] ?> </h1>
+<h1>category id: <?= $category['id'] ?> </h1>
 
 <form class="form-group" action="update.php?id=<?= $id ?>" method="POST">
     <div>
         Category:
-        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $product['name'] ?>">
+        <input class="form-control" type="text" name="name" required value="<?= $name? $name: $category['name'] ?>">
     </div>
     <div>
         <input type="submit" value="Update">
