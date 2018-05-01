@@ -20,9 +20,9 @@ interface CategoryRepositoryInterface {
 
     public function deleteOneById(int $id): void;
 
-    public function insertOne(Categorynterface $product): Categorynterface;
+    public function insertOne(CategoryInterface $product): CategoryInterface;
 
-    public function updateOne(Categorynterface $product): Categorynterface;
+    public function updateOne(CategoryInterface $product): CategoryInterface;
 
-    public function findOneById(int $id): ?Categorynterface;
+    public function findOneById(int $id): ?CategoryInterface;
 }
