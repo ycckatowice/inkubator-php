@@ -18,8 +18,8 @@
                 <b>Komputer: </b><br>
                 
                 <?php               
-               
-                    for($i=$index; $i<$index +1; $i++){
+               //var_dump($index);
+                    for($i=$index; $i<$index +5; $i++){
                         echo '<img src="'.$_SESSION['komputer'][$i]['img'].'">';
                         print_r($_SESSION['komputer'][$i]['nazwa']);
                         echo " "; 
@@ -36,7 +36,7 @@
                 <b>Gracz: </b><br>
                 <?php  
 
-                    for($i=$index; $i<$index +1; $i++){
+                    for($i=$index; $i<$index +5; $i++){
                         echo '<img src="'.$_SESSION['gracz'][$i]['img'].'">';
                         print_r($_SESSION['gracz'][$i]['nazwa']);
                         echo " "; 
@@ -53,7 +53,12 @@
             <div id="dziecko2" class="container">
                 <b>Wynik: </b><br>
                 <?php               
-                    
+                    if(empty($_SESSION['komputer'])){
+                        echo "<h1>Gracz wygrał wojne</h1>";
+                    }
+                    elseif (empty($_SESSION['gracz'])) {
+                        echo "<h1>Komputer wygrał</h1>";
+                    }
                 /*
                     $odpowiedz = [
                     1 => "komputer wygrał",

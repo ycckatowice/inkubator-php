@@ -23,7 +23,7 @@
                     shuffle($dane);                
                     $karty_komputer = array_slice($dane, 0, 26);                                
                     $ile = count($karty_komputer);               
-                    for($i=0; $i<1; $i++){
+                    for($i=0; $i<6; $i++){
                         echo '<img src="'.$karty_komputer[$i]['img'].'">';
                         print_r($karty_komputer[$i]['nazwa']);
                         echo " "; 
@@ -39,7 +39,7 @@
                 <?php              
                     $karty_gracza = array_slice($dane, 26, 52);                    
                     $iles = count($karty_gracza);
-                    for($i=0; $i<1; $i++){
+                    for($i=0; $i<6; $i++){
                         echo '<img src="'.$karty_gracza[$i]['img'].'">';
                         print_r($karty_gracza[$i]['nazwa']);
                         echo " "; 
