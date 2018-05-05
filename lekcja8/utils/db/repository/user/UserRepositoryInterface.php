@@ -19,9 +19,9 @@ interface UserRepositoryInterface {
 
     public function deleteOneById(int $id): void;
 
-    public function insertOne(UserInterface $product): UserInterface;
+    public function insertOne(UserInterface $user): UserInterface;// zmienilem $product na $user
 
-    public function updateOne(UserInterface $product): UserInterface;
+    public function updateOne(UserInterface $user): UserInterface;// zmienilem $product na $user
 
     public function findOneById(int $id): ?UserInterface;
     
