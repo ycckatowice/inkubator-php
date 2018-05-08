@@ -21,18 +21,22 @@
             }
             ?>
 
-            <?php
-            if (Authorization::isAuthorizedAny()) {
-                echo '
+           
                     <li class="nav-item float-right">
                      <a class="nav-link" href="/lekcja8/logout.php">Logout</a>
                    </li>
-               ';
-            }
-            ?>
-
-
+              
         </ul>
-
+         <?php
+            if (Authorization::isAuthorizedAny()) {
+                echo '
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="nav-link" href="/lekcja8/basket/">(0) <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a class="nav-link" href="/lekcja8/logout.php">Logout</a></li>
+                </ul>
+                ';
+            }
+        ?>
     </div>
+     
 </nav>

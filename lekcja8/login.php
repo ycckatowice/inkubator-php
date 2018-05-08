@@ -8,7 +8,6 @@ $password = getRequestPostVariable('password');
 
 // Instrukcja do zaszyfrowania hasła metodą BCRYPT
 // w Bazie trzymamy zaszyfrowane hasła
-echo password_hash('admin1234', PASSWORD_BCRYPT);
 if ($login && $password) {
    
     $user = userFindOneByEmail($pdo, $login);
@@ -43,7 +42,7 @@ if ($login && $password) {
     <div class="alert-success">
         <br><b>Customer</b>
         <br><b>Login: </b> mikolaj@inkubator.com
-        <br><b>Pass:</b> asdf1234
+        <br><b>Pass:</b> admin1234
         <br><b>Admin</b>
         <br><b>Login: </b> oskar@inkubator.com
         <br><b>Pass:</b> 12346
