@@ -15,7 +15,7 @@ class UserRepository implements UserRepositoryInterface{
                 $this->pdo = $pdo;
             }
             
-    public function findaAll():array
+    public function findAll():array
         {
             $statement= $this->pdo->prepare("SELECT * FROM user");
             $statement->execute();
@@ -56,7 +56,7 @@ class UserRepository implements UserRepositoryInterface{
                      ");
             $statement->execute($userParams);
             $user->setId((int) $this->pdo->lastInsertId());
-            returtn $user;
+            return $user;
             }
             
     public function updateOne(UserInterface $user): UserInterface
@@ -81,7 +81,7 @@ class UserRepository implements UserRepositoryInterface{
                       email = :email,
                       city = :city,
                       role = :role
-                      WHERE id = :id")
+                      WHERE id = :id");
              $statement->execute($userParams);
              
              return $user;
