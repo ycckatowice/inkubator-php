@@ -10,9 +10,9 @@ class UserRepository implements UserRepositoryInterface{
   
     public $pdo;
     
-    public function _construct(PDO $pdo)
+    public function __construct(PDO $pdo)
             {
-                $this->pdo=$pdo;
+                $this->pdo = $pdo;
             }
             
     public function findaAll():array
@@ -20,8 +20,8 @@ class UserRepository implements UserRepositoryInterface{
             $statement= $this->pdo->prepare("SELECT * FROM user");
             $statement->execute();
             
-            $user = $sttatement->fetchAll(PDO::FETCH_FUNC, "User::createFromDB");
-            return $user;
+            $users = $sttatement->fetchAll(PDO::FETCH_FUNC, "User::createFromDB");
+            return $users;
         }
         
     public function deleteOneById(int $id): void 
@@ -72,14 +72,14 @@ class UserRepository implements UserRepositoryInterface{
                         'last_name'=> $user->getLastName(),
                         'email'=> $user->getEmail(),
                         'city'=> $user->getCity(),
-                        'role'=> $user->getRole(),
+                        'role'=> $user->getRole()
                     ];
              $statement = $this->pdo->prepare("
                       UPDATE user SET
-                      first_name = :first_name
-                      last_name = :last_name
-                      email = :email
-                      city = :city
+                      first_name = :first_name,
+                      last_name = :last_name,
+                      email = :email,
+                      city = :city,
                       role = :role
                       WHERE id = :id")
              $statement->execute($userParams);
@@ -98,4 +98,4 @@ class UserRepository implements UserRepositoryInterface{
             return !empty($user) ? $user[0] : NULL;
         }
 
-};
+}
