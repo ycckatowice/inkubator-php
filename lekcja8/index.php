@@ -10,11 +10,12 @@ $products = $productRepository->findAll();
 //Find all users here
 ?>
 <br><br><br>
-<h1>Category list:</h1>
+<h1>Products:</h1>
 <table class="table">
     <tr>
-        <td>Product name</td>
-        <td>Product cost</td>
+        <td><b>Product name</b></td>
+        <td><b>Product cost</b></td>
+        <td><b>Action<b/></td>
     </tr>
     <?php
     // Iterate all users
