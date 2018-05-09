@@ -13,6 +13,7 @@
  */
 class MikolajUser implements UserInterface{
 
+    private $id;
     /**
      * @var string
      */
@@ -55,31 +56,31 @@ class MikolajUser implements UserInterface{
     }
 
     public function getCity(): string {
-        
+        return (string) $this->city;
     }
 
     public function getEmail(): string {
-        
+        return (string) $this->email;
     }
 
     public function getFirstName(): string {
-        
+        return (string) $this->firstName;
     }
 
     public function getId(): int {
-        
+        return (int)$this->id;
     }
 
     public function getLastName(): string {
-        
+        return (string) $this->lastName;
     }
 
     public function getPassword(): string {
-        
+        return (string) $this->password;
     }
 
     public function getRole(): int {
-        
+        return (int) $this->role; 
     }
 
     public function setCity(string $city): void {

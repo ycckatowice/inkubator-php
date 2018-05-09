@@ -6,7 +6,7 @@ class MikolajBasket implements BasketInterface {
     //Put your code here
 
     protected $user;
-    protected $products;
+    protected $products = [];
 
     public function __construct(\UserInterface $user) {
         $this->user = $user;

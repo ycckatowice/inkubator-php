@@ -3,8 +3,9 @@ require_once '../partial_view/header.php';
 if (!Authorization::isAuthorizedAny()) {
     header('Location: /lekcja8/login.php');
 }
-//TODO get list of orders
-// $orders = $basket->getOrders();
+// TODO get list of orders
+ $basket = BasketManager::getBasket();
+ $orders = $basket->getOrders();
 ?>
 <table class="table">
     <tr>
@@ -14,13 +15,13 @@ if (!Authorization::isAuthorizedAny()) {
     <?php
     
     // TODO Iterate all orders
-//    foreach ($orders as $order) {
-//        echo "
-//        <tr>
-//            <td>{$order->getProductName()}</td>
-//            <td>{$order->getProductCost()}</td>
-//       </tr>";
-//    }
+    foreach ($orders as $order) {
+        echo "
+        <tr>
+            <td>{$order->getProductName()}</td>
+            <td>{$order->getProductCost()}</td>
+       </tr>";
+    }
     // TODO Buy all products
     
     ?>

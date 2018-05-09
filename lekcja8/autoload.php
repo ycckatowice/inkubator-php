@@ -37,6 +37,7 @@ require_once __DIR__ . '/utils/db/model/Category.php';
 require_once __DIR__ . '/utils/db/model/User.php';
 require_once __DIR__ . '/utils/db/model/MikolajUser.php';
 require_once __DIR__ . '/utils/db/model/Order.php';
+require_once __DIR__ . '/utils/db/model/MikolajOrder.php';
 
 
 

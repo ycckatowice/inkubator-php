@@ -52,27 +52,27 @@ class MikolajOrder implements OrderInterface{
     }
 
     public function getProductId(): int {
-       
+        return $this->productId;
     }
 
     public function getProductName(): string {
-        
+        return (string)$this->productName;
     }
 
     public function getUserCity(): string {
-        
+        return (string)$this->userCity;
     }
 
     public function getUserFirstName(): string {
-        
+        return (string)$this->userFirstName;
     }
 
     public function getUserId(): int {
-        
+        return $this->userId;
     }
 
     public function getUserLastName(): string {
-        
+        return (string)$this->userLastName;
     }
 
 }
