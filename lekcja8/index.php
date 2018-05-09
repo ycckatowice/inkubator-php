@@ -29,7 +29,7 @@ $products = $productRepository->findAll();
      <td>{$product->getName()}</td>
      <td>{$product->getCost()}</td>
         <td>
-         <a href='order.php?productId={$product->getId()}'>Order</a>
+         <a href='basket/order.php?productId={$product->getId()}'>Order</a>
        </td>
        </tr>";
     }

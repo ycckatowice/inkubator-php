@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/partial_view/header.php';
+require_once __DIR__ . '/../partial_view/header.php';
 
 
 
