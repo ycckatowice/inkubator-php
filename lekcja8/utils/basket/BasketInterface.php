@@ -40,3 +40,4 @@ interface BasketInterface {
      */
     public function clear(): void;
 }
+

@@ -56,8 +56,13 @@ class ProductRepository implements ProductRepositoryInterface {
          * w ten sposób zrobimy sobie obiekty typu Product które powiedzą nam jakie wartości są w bazie danych
          * Plik Product.php który zawiera klasę Product musi być załądowany w autoload
          */
-        $users = $statement->fetchAll(PDO::FETCH_FUNC, "Product::createFromDB");
-        return $users;
+        $rawProducts = $statement->fetchAll();
+
+        $hydratedProducts = [];
+        foreach ($rawProducts as $rawProduct) {
+            $hydratedProducts[] = $this->hydrate($rawProduct);
+        }
+        return $hydratedProducts;
     }
 
     /**
@@ -77,22 +82,6 @@ class ProductRepository implements ProductRepositoryInterface {
      * 
      * Zwracamy typ danych taki jak klasa Product. Plik Product.php który zawiera klasę Product musi być załądowany w autoload
      */
-    public function findOneById(int $id): ?ProductInterface {
-
-        $statement = $this->pdo->prepare("SELECT * FROM product WHERE id = :id");
-        $statement->execute(['id' => $id]);
-
-        /**
-         * Ustawiliśmy typ fetch. Wcześniej był ustawiony domyślnie w pliku connection.php aby pobrało PDO::FETCH_ASSOC
-         * Zmieniamy to na PDO::FETCH_CLASS. Drugim parametrem jest nazwa klasy do jakiej ma być przekazane
-         * w ten sposób zrobimy sobie obiekty typu Product które powiedzą nam jakie wartości są w bazie danych
-         * Plik Product.php który zawiera klasę Product musi być załądowany w autoload
-         */
-        
-        $users = $statement->fetchAll(PDO::FETCH_FUNC, "Product::createFromDB");
-
-        return !empty($users) ? $users[0] : NULL;
-    }
 
     /**
      * Funkcja publiczna jest dostępna tylko po wywołaniu konstruktora new
@@ -147,6 +136,40 @@ class ProductRepository implements ProductRepositoryInterface {
         $statement->execute($productParams);
 
         return $product;
+    }
+
+    protected function hydrate(array $rawProduct): Product {
+        $reflection = new ReflectionClass(Product::class);
+        $product = $reflection->newInstanceWithoutConstructor();
+
+        $hydrateProductFunction = function(array $data) {
+            $this->id = $data['id'];
+            $this->name = $data['name'];
+            $this->categoryId = $data['category_id'];
+            $this->cost = $data['cost'];
+        };
+
+        $hydrateProductFunction = $hydrateProductFunction->bindTo($product, $product);
+
+        $hydrateProductFunction($rawProduct);
+
+        return $product;
+    }
+
+    public function findOneById(int $id): ?ProductInterface {
+
+        $statement = $this->pdo->prepare("SELECT * FROM product WHERE id = :id");
+        $statement->execute(['id' => $id]);
+
+        /**
+         * Ustawiliśmy typ fetch. Wcześniej był ustawiony domyślnie w pliku connection.php aby pobrało PDO::FETCH_ASSOC
+         * Zmieniamy to na PDO::FETCH_CLASS. Drugim parametrem jest nazwa klasy do jakiej ma być przekazane
+         * w ten sposób zrobimy sobie obiekty typu Product które powiedzą nam jakie wartości są w bazie danych
+         * Plik Product.php który zawiera klasę Product musi być załądowany w autoload
+         */
+        $product = $statement->fetch();
+
+        return $product ? $this->hydrate($product) : null;
     }
 
 }

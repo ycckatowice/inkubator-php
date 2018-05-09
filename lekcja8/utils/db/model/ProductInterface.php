@@ -31,5 +31,5 @@ interface ProductInterface {
 
     public function setCost(float $cost): void;
 
-    public static function createFromDB(int $id, string $name, int $categoryId, float $cost): ProductInterface;
+//    public static function createFromDB(int $id, string $name, int $categoryId, float $cost): ProductInterface;
 }

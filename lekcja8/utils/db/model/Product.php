@@ -59,10 +59,12 @@ class Product implements ProductInterface{
         $this->cost = $cost;
     }
 
-    public static function createFromDB(int $id, string $name, int $categoryId, float $cost): ProductInterface {
-        $product = new self($name, $categoryId, $cost);
-        $product->id = $id;
-        
-        return $product;
-    }
+//    public static function createFromDB(int $id, string $name, int $categoryId, float $cost): ProductInterface {
+//        $productMapper = new ProductMapper();
+//        $productMapper->hydrate()
+//        $product = new self($name, $categoryId, $cost);
+//        $product->id = $id;
+//        
+//        return $product;
+//    }
 }

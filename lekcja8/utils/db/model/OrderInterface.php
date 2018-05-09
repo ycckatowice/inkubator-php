@@ -15,7 +15,7 @@ interface OrderInterface {
 
     public function __construct(UserInterface $user, ProductInterface $product);
 
-    public function createFromDB(
+    public static function createFromDB(
     int $orderId
     , int $productId
     , string $productName

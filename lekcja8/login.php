@@ -11,7 +11,15 @@ $password = getRequestPostVariable('password');
 if ($login && $password) {
    
     $user = userFindOneByEmail($pdo, $login);
- 
+    $userModel = new MikolajUser(
+            $user["first_name"],
+            $user["last_name"],
+            $user["email"],
+            $user["city"],
+            $user["role"],
+            $user["password"]
+            );
+
     // password_verify
     // Instrukcja sprawdzi czy ciąg znaków przekazany w formularzu 
     // jako hasło jest zgodny z zaszyfrowanym hasłem w bazie
@@ -21,6 +29,10 @@ if ($login && $password) {
         // class authorization ma metodę statyczną(static) do której odnosimy się poprzez podójny dwukropek (::)
         // metoda jest to funkcja która jest dostępna tylko w class
         Authorization::authorize($user);
+        
+        $basket = new MikolajBasket($userModel);
+        BasketManager::saveBasket($basket);
+        
         header('Location: /lekcja8/index.php');
     } else {
   

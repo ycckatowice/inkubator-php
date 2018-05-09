@@ -3,6 +3,7 @@ require_once __DIR__ . '/partial_view/header.php';
 if (!Authorization::isAuthorizedAny()) {
     header('Location: /lekcja8/login.php');
 }
+
 $productRepository = new ProductRepository($pdo);
 
 $products = $productRepository->findAll();
@@ -28,7 +29,7 @@ $products = $productRepository->findAll();
      <td>{$product->getName()}</td>
      <td>{$product->getCost()}</td>
         <td>
-         <a href='order.php?id={$product->getId()}'>Order</a>
+         <a href='order.php?productId={$product->getId()}'>Order</a>
        </td>
        </tr>";
     }

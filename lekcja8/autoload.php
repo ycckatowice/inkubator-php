@@ -31,10 +31,14 @@ require_once __DIR__ . '/utils/db/model/UserInterface.php';
 require_once __DIR__ . '/utils/db/model/CategoryInterface.php';
 require_once __DIR__ . '/utils/db/model/OrderInterface.php';
 
+
 require_once __DIR__ . '/utils/db/model/Product.php';
 require_once __DIR__ . '/utils/db/model/Category.php';
 require_once __DIR__ . '/utils/db/model/User.php';
+require_once __DIR__ . '/utils/db/model/MikolajUser.php';
 require_once __DIR__ . '/utils/db/model/Order.php';
+
+
 
 // DB Repositories
 require_once __DIR__ . '/utils/db/repository/category/CategoryRepositoryInterface.php';
@@ -48,3 +52,8 @@ require_once __DIR__ . '/utils/db/repository/product/ProductRepository.php';
 // Auth
 
 require_once __DIR__ . '/utils/authentication/Authorization.php';
+
+
+require_once __DIR__ . '/utils/basket/BasketInterface.php';
+require_once __DIR__ . '/utils/basket/BasketManager.php';
+require_once __DIR__ . '/utils/basket/MikolajBasket.php';
