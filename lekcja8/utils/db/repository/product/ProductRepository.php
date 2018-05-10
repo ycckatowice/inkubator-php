@@ -139,16 +139,23 @@ class ProductRepository implements ProductRepositoryInterface {
     }
 
     protected function hydrate(array $rawProduct): Product {
+        
+        // utworzenie instancji klasy Produkt poprzez Refleksje
+        // Chcemy uniknąć braku wymaganych argumentów do new Product()
         $reflection = new ReflectionClass(Product::class);
         $product = $reflection->newInstanceWithoutConstructor();
-
+        
+        
+        // utworzenie clousure do wpisywania parametrów obiektu $produkt
         $hydrateProductFunction = function(array $data) {
+            // na tym etapie $this nie jest zdefiniowany
             $this->id = $data['id'];
             $this->name = $data['name'];
             $this->categoryId = $data['category_id'];
             $this->cost = $data['cost'];
         };
-
+        // poprzez wywołanie na clousure metody bindTo przypisujemy mu czym jest $this
+        // chcemy by $this był częścią instancji $produkt
         $hydrateProductFunction = $hydrateProductFunction->bindTo($product, $product);
 
         $hydrateProductFunction($rawProduct);

@@ -9,7 +9,9 @@
  * mamy nazwy kolumn po wpisaniu $product->
  * pokażą nam się podpowiedzi w NetBeans, lub możemy kliknąć ctrl+spacja aby wymusić pokazanie podpowiedzi
  * 
+ * 
  */
+
 class Product implements ProductInterface{
 
     /**
