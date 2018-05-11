@@ -8,6 +8,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading"><b> Chat </b> <small>online</small></div>
             <div class="panel-body" id="messages" >
+                
             </div>
             <div class="input-group">
                 <input id="message" class="form-control width100">
@@ -21,13 +22,71 @@
 
 <script>
    $(document).ready(function (){
-        console.log("Jestem");
-        console.log($(".container"));
-        console.log($("div"));
+       
+       var $messages = $("#messages");
+       
+       function getMessages(){
+           $.ajax({
+               url:"api/messages.php",
+               dataType: "json",
+               method: "GET",
+               success: function(data){
+                   foreach($data as  $value)
+                   
+                   $.each(data, function(key, message){
+                       console.log(message);
+                       $messages.append('<div class="clearfix"><blockquote class="you pull-left">'+ message.content +'</blockquote></div>' );
+                   });
+                  
+               }
+           });
+       }
+       
+       getMessages();
+       
+        var clickCounter = 0;
+        var $send = $("#send");
+        
+        function onClickSend(){
+             clickCounter++;
+             console.log("click: ", clickCounter);
+        }
+        
+        send.click(onClickSend);
+          
    });
    
-   
-   $(function(){
-       console.log("Jestem też tutaj");
-   });
+   // w czystym javascripcie
+   // 
+   // document.addEventListener("DOMContentLoaded", function(){
+   //     console.log("cos");
+   // });
+   // 
+   // a w jQuery ($):
+   //
+   // $(document).ready(function(){
+   //   console.log("cos");
+   // });
+   // 
+   // albo jeszcze krócej:
+   //
+   // $(function(){
+   //   console.log("cos");
+   // });
+   //
 </script>
+
+<?php
+
+
+$moja = function ($moja = null){
+    $args = func_get_args();
+    echo "argumenty funkcji";
+    var_dump($args);
+};
+
+//moja("ja", "nsadnasd", "1", 2, 3, 4, 5,6
+var_dump($moja);
+
+$moja();
+?>

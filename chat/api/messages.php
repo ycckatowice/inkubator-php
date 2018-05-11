@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__."/../autoload.php";
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 
 function getMessages(PDO $pdo): string {
