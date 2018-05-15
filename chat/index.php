@@ -2,13 +2,12 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link href="asset/css/styles.css" rel="stylesheet">
-<div class="container"></div>
 <div class="container">
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-heading"><b> Chat </b> <small>online</small></div>
             <div class="panel-body" id="messages" >
-                
+
             </div>
             <div class="input-group">
                 <input id="message" class="form-control width100">
@@ -22,58 +21,57 @@
 
 <script>
    $(document).ready(function (){
-       
-       var $messages = $("#messages");
-       
+        
+        var $messages = $("#messages");
+
        function getMessages(){
-           $.ajax({
+            $.ajax({
                url:"api/messages.php",
-               dataType: "json",
-               method: "GET",
+                dataType: "json",
+                method: "GET",
                success: function(data){
-                   foreach($data as  $value)
                    
                    $.each(data, function(key, message){
-                       console.log(message);
+                                console.log(message);
                        $messages.append('<div class="clearfix"><blockquote class="you pull-left">'+ message.content +'</blockquote></div>' );
-                   });
-                  
-               }
-           });
-       }
-       
-       getMessages();
-       
+                            });
+
+                }
+            });
+        }
+
+        getMessages();
+
         var clickCounter = 0;
         var $send = $("#send");
-        
+
         function onClickSend(){
-             clickCounter++;
-             console.log("click: ", clickCounter);
+            clickCounter++;
+            console.log("click: ", clickCounter);
         }
-        
+
         send.click(onClickSend);
-          
-   });
-   
-   // w czystym javascripcie
-   // 
-   // document.addEventListener("DOMContentLoaded", function(){
-   //     console.log("cos");
-   // });
-   // 
-   // a w jQuery ($):
-   //
-   // $(document).ready(function(){
-   //   console.log("cos");
-   // });
-   // 
-   // albo jeszcze krócej:
-   //
-   // $(function(){
-   //   console.log("cos");
-   // });
-   //
+
+    });
+
+    // w czystym javascripcie
+    // 
+    // document.addEventListener("DOMContentLoaded", function(){
+    //     console.log("cos");
+    // });
+    // 
+    // a w jQuery ($):
+    //
+    // $(document).ready(function(){
+    //   console.log("cos");
+    // });
+    // 
+    // albo jeszcze krócej:
+    //
+    // $(function(){
+    //   console.log("cos");
+    // });
+    //
 </script>
 
 <?php

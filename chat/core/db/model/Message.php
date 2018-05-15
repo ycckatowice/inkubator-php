@@ -15,9 +15,11 @@ class Message {
 
     protected $id;
     protected $content;
+    protected $userId;
 
-    public function __construct(string $content) {
+    public function __construct(string $content, int $userId) {
         $this->content = $content;
+        $this->userId = $userId;
     }
 
     public function getId(): int {
@@ -34,5 +36,9 @@ class Message {
 
     public function setId(int $id): void {
         $this->id = $id;
+    }
+    
+    public function getUserId(): int{
+        return $this->userId;
     }
 }

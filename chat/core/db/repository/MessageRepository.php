@@ -22,11 +22,12 @@ class MessageRepository {
     public function insertOne(Message $message): Message {
         $params = [
             'content' => $message->getContent(),
+            'user_id' =>  $message->getUserId(),
         ];
 
         $statement = $this->pdo->prepare("
-            INSERT INTO `message` (content)
-            VALUES (:content) 
+            INSERT INTO `message` (content, user_id)
+            VALUES (:content, :user_id) 
         ");
 
 

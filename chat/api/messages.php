@@ -14,7 +14,8 @@ function saveMessage(PDO $pdo): string {
     $repository = new MessageRepository($pdo);
     
     $content = requestPostVariable("content");
-    $message =  new Message($content);
+    $userId = requestPostVariable("user_id");
+    $message =  new Message($content, $userId);
     $repository->insertOne($message);
     
     return json_encode([
