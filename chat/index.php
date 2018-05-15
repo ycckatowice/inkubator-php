@@ -23,13 +23,18 @@
    $(document).ready(function (){
         
         var $messages = $("#messages");
+        var $send = $("#send");
+        var $message = $("#message");
+        
+        var clickCounter = 0;
 
+        
        function getMessages(){
             $.ajax({
-               url:"api/messages.php",
+                url:"api/messages.php",
                 dataType: "json",
                 method: "GET",
-               success: function(data){
+                success: function(data){
                    
                    $.each(data, function(key, message){
                                 console.log(message);
@@ -42,15 +47,14 @@
 
         getMessages();
 
-        var clickCounter = 0;
-        var $send = $("#send");
 
+console.log($send);
         function onClickSend(){
-            clickCounter++;
+           
             console.log("click: ", clickCounter);
         }
 
-        send.click(onClickSend);
+        $send.click(onClickSend);
 
     });
 
