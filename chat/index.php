@@ -1,3 +1,8 @@
+<script>
+ var userId = <?= isset($_GET['id'])? $_GET['id'] : 1 ?> ;
+</script>
+
+
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -10,6 +15,7 @@
 
             </div>
             <div class="input-group">
+                
                 <input id="message" class="form-control width100">
                 <span class="input-group-btn">
                     <button id="send" class="btn btn-info">Send</button>
@@ -23,11 +29,12 @@
    $(document).ready(function (){
         
         var $messages = $("#messages");
+        console.log($message);
         var $send = $("#send");
         var $message = $("#message");
         
         var clickCounter = 0;
-
+        var messagesList = [];
         
        function getMessages(){
             $.ajax({
@@ -35,25 +42,60 @@
                 dataType: "json",
                 method: "GET",
                 success: function(data){
+                   var newMessages = [];
                    
-                   $.each(data, function(key, message){
-                                console.log(message);
-                       $messages.append('<div class="clearfix"><blockquote class="you pull-left">'+ message.content +'</blockquote></div>' );
-                            });
+                   if(messagesList.length < data.length){
+                        newMessages = data.slice(messagesList.length);
+                        messagesList = data;
+                   }
+                   
+                   $.each(newMessages, function(key, message){
+                       
+                       var classNames = message.user_id == userId? "me pull-left": "you pull-right";
+                       $messages.append(
+                               '<div class="clearfix"><blockquote class="' + classNames + '">'
+                               + message.content 
+                               +'</blockquote></div>' 
+                        );
+                    });
 
                 }
             });
+            return 1;
+        }
+        // Powtarza wykonywanie getMessages co 1 sek
+        setInterval(getMessages, 1000);
+
+
+        function onClickSend(event){
+           console.log(event);
+           event.preventDefault();
+            var message = $message.val();
+            console.log("Wartość w inpucie: ", message);
+            
+            $.ajax({
+                url: "api/messages.php",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    content: message,
+                    "user_id": userId
+                },
+                success: function (data){
+                    $message.val('');
+                }
+            })
         }
 
-        getMessages();
 
 
-console.log($send);
-        function onClickSend(){
-           
-            console.log("click: ", clickCounter);
-        }
+        $message.keydown(function(event){
+          if(event.keyCode == 13){
+             console.log($message.val(), event);
+             onClickSend(event);
+           }
 
+        });
         $send.click(onClickSend);
 
     });
@@ -90,5 +132,5 @@ $moja = function ($moja = null){
 //moja("ja", "nsadnasd", "1", 2, 3, 4, 5,6
 var_dump($moja);
 
-$moja();
+$moja(12345, 2, 1234, 345, 546, 765,345);
 ?>
