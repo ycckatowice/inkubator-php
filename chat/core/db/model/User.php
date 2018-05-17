@@ -11,9 +11,10 @@
  *
  * @author mikolaj
  */
-class User implements UserInterface{
+class User implements UserInterface {
 
     private $id;
+
     /**
      * @var string
      */
@@ -43,16 +44,18 @@ class User implements UserInterface{
      * @var string
      */
     private $firstName;
+    private $apiToken;
 
     //put your code here
-    public function __construct(string $firstName, string $lastName, string $email, string $city, string $role, string $password) {
-        
+    public function __construct(string $firstName, string $lastName, string $email, string $city, string $role, string $password, string $apiToken) {
+
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
         $this->city = $city;
         $this->role = $role;
         $this->password = $password;
+        $this->apiToken = $apiToken;
     }
 
     public function getCity(): string {
@@ -68,7 +71,7 @@ class User implements UserInterface{
     }
 
     public function getId(): int {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     public function getLastName(): string {
@@ -80,7 +83,7 @@ class User implements UserInterface{
     }
 
     public function getRole(): int {
-        return (int) $this->role; 
+        return (int) $this->role;
     }
 
     public function setCity(string $city): void {
@@ -109,6 +112,10 @@ class User implements UserInterface{
 
     public function setRole(int $role): void {
         $this->role = $role;
+    }
+
+    public function getApiToken(): string {
+        return $this->apiToken;
     }
 
 }

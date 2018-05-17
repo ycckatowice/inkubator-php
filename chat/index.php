@@ -1,12 +1,17 @@
+<?php require_once __DIR__. '/partial_view/navigation.php'; ?>
 <script>
  var userId = <?= isset($_GET['id'])? $_GET['id'] : 1 ?> ;
 </script>
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="asset/js/login.js" ></script>
 <link href="asset/css/styles.css" rel="stylesheet">
+<link href="asset/css/navigation.css" rel="stylesheet">
+
 <div class="container">
     <div class="row">
         <div class="panel panel-primary">
@@ -77,6 +82,7 @@
                 url: "api/messages.php",
                 method: "POST",
                 dataType: "json",
+                headers: {API_TOKEN: 'bdnhpy'},
                 data: {
                     content: message,
                     "user_id": userId
@@ -123,14 +129,14 @@
 <?php
 
 
-$moja = function ($moja = null){
-    $args = func_get_args();
-    echo "argumenty funkcji";
-    var_dump($args);
-};
-
-//moja("ja", "nsadnasd", "1", 2, 3, 4, 5,6
-var_dump($moja);
-
-$moja(12345, 2, 1234, 345, 546, 765,345);
+//$moja = function ($moja = null){
+//    $args = func_get_args();
+//    echo "argumenty funkcji";
+//    var_dump($args);
+//};
+//
+////moja("ja", "nsadnasd", "1", 2, 3, 4, 5,6
+//var_dump($moja);
+//
+//$moja(12345, 2, 1234, 345, 546, 765,345);
 ?>

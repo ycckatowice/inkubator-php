@@ -14,7 +14,7 @@
 interface UserInterface {
 
     //put your code here
-    public function __construct(string $firstName, string $lastName, string $email, string $city, string $role, string $password);
+    public function __construct(string $firstName, string $lastName, string $email, string $city, string $role, string $password, string $apiToken);
     
     public function getId(): int;
 
@@ -29,6 +29,8 @@ interface UserInterface {
     public function getRole(): int;
 
     public function getPassword(): string;
+    
+    public function getApiToken(): string;
 
     public function setId(int $id): void;
 
