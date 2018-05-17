@@ -11,9 +11,10 @@ $(function(){
       $loginForm.css({
                  "display": "inline-block"
              });
-             // add single css instruction at once
-             $logoutButton.css("display", "none");
-             $loggedUser.html('');
+        // add single css instruction at once
+        $logoutButton.css("display", "none");
+        $loggedUser.html('');
+        localStorage.user = undefined;
   }
   // 
   // funkcja processLoginSession
