@@ -63,6 +63,8 @@
                                +'</blockquote></div>' 
                         );
                     });
+                    console.log($messages, $messages.height());
+                    $messages.scrollTop($messages[0].scrollHeight)
 
                 }
             });
