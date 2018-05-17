@@ -34,7 +34,7 @@
    $(document).ready(function (){
         
         var $messages = $("#messages");
-        console.log($message);
+//        console.log($message);
         var $send = $("#send");
         var $message = $("#message");
         
@@ -63,7 +63,7 @@
                                +'</blockquote></div>' 
                         );
                     });
-                    console.log($messages, $messages.height());
+//                    console.log($messages, $messages.height());
                     $messages.scrollTop($messages[0].scrollHeight)
 
                 }
@@ -75,10 +75,10 @@
 
 
         function onClickSend(event){
-           console.log(event);
+//           console.log(event);
            event.preventDefault();
             var message = $message.val();
-            console.log("Wartość w inpucie: ", message);
+//            console.log("Wartość w inpucie: ", message);
             
             $.ajax({
                 url: "api/messages.php",
@@ -99,11 +99,12 @@
 
         $message.keydown(function(event){
           if(event.keyCode == 13){
-             console.log($message.val(), event);
+//             console.log($message.val(), event);
              onClickSend(event);
            }
 
         });
+        
         $send.click(onClickSend);
 
     });
