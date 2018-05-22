@@ -20,9 +20,11 @@ $(function(){
   // funkcja processLoginSession
   
   function processLoginSession(){
-      if(localStorage.user){
-        var user = JSON.parse(localStorage.user);
-        prepareLoggedInUserView(user);
+
+      if("user" in localStorage && localStorage.user != 'undefined'){
+
+            var user = JSON.parse(localStorage.user);
+            prepareLoggedInUserView(user);
         
         }
   }

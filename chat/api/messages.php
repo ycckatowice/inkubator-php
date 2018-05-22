@@ -11,12 +11,22 @@ function getMessages(PDO $pdo): string {
 }
 
 function saveMessage(PDO $pdo): string {
-    $repository = new MessageRepository($pdo);
+    $messageRepository = new MessageRepository($pdo);
     
     $content = getRequestPostVariable("content");
     $userId = getRequestPostVariable("user_id");
-    $message =  new Message($content, $userId);
-    $repository->insertOne($message);
+    $apiToken = getRequestHeader('API_TOKEN');
+
+    $userRepository = new UserRepository($pdo);
+    if(!($user = $userRepository->findOneByApiToken($apiToken))){
+            Response::exitWithInvalidResponse(
+                ["message" => "User is not logged"] // set response body
+                , Response::UNAUTHORIZED // set response status code
+        );
+    }
+    
+    $message =  new Message($content, $user->getId());
+    $messageRepository->insertOne($message);
     
     return json_encode([
         "id" => $message->getId(),

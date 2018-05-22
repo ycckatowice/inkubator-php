@@ -71,7 +71,7 @@
             return 1;
         }
         // Powtarza wykonywanie getMessages co 1 sek
-        setInterval(getMessages, 1000);
+        setInterval(getMessages, 5000);
 
 
         function onClickSend(event){
@@ -80,19 +80,37 @@
             var message = $message.val();
 //            console.log("Wartość w inpucie: ", message);
             
+            if(!("user" in localStorage) || localStorage.user == 'undefined'){
+                alert("You are not logged in");
+                console.log("not set");
+                return;
+                
+            }
+            
+            var user = JSON.parse(localStorage.user);
             $.ajax({
                 url: "api/messages.php",
                 method: "POST",
                 dataType: "json",
-                headers: {API_TOKEN: 'bdnhpy'},
+                headers: {
+                    API_TOKEN: user.api_token
+                },
                 data: {
                     content: message,
+
                     "user_id": userId
                 },
                 success: function (data){
                     $message.val('');
+                },
+                error: function(errorResponse){
+                    if(errorResponse.status == 401){
+                        alert("Please Log in");
+                    } else {
+                        alert("Something went wrong pleas contact us about this issue");
+                    }
                 }
-            })
+            });
         }
 
 
