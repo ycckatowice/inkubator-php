@@ -1,4 +1,5 @@
 <?php
+namespace Skladniki;
 
 class Pokarm {
     protected $sladniki = [];

@@ -1,12 +1,10 @@
 <?php
 
 require_once __DIR__. '/vendor/autoload.php';
-require_once './kanapka/Pokarm.php';
-require_once './kanapka/Kanapka.php';
-require_once './skladniki/Pomidor.php';
-require_once './skladniki/Szynka.php';
 
 use Pimple\Container;
+use Skladniki\Pomidor;
+use Skladniki\Szynka;
 
 $container = new Container();
 
